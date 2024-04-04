@@ -1,0 +1,19 @@
+{
+    "name": "juanc/hubsales",
+    "description": "Proyecto Final de la asignatura Bases de Datos de Uniremington",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+            "Controllers\\": "./controllers",
+            "Model\\": "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juan Cano",
+            "email": "farismendi27@gmail.com"
+        }
+    ],
+    "require": {}
+}
