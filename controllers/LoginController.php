@@ -8,16 +8,19 @@ class LoginController
 {
   public static function login(Router $router)
   {
-    $router->render('auth/login');
+    $router->render('auth/login', [], false);
   }
 
-  public static function logout()
+  public static function logout(Router $router)
   {
-    echo "Desde logout";
+    $router->render('auth/logout');
   }
 
-  public static function crear()
+  public static function crear(Router $router)
   {
-    echo "Desde Crear";
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    }
+
+    $router->render('auth/usuario');
   }
 }

@@ -6,12 +6,15 @@ html {
     height: 100%;
 }
 
+::placeholder {
+    color: v.$placeholder;
+    font-size: 2rem;
+}
+
 body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: v.$azul_1;
-    color: v.$azul_100;
 }
 
 *,
@@ -25,16 +28,14 @@ body {
     font-size: 1.6rem;
 }
 
-.contenedor {
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 a {
     text-decoration: none;
 }
 
 img {
     max-width: 100%;
+}
+
+i {
+    color: v.$azul_700
 }

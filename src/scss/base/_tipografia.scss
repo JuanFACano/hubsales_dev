@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'mixins' as m;
 
 h1,
 h2,
@@ -6,12 +7,11 @@ h3 {
     font-family: v.$fuente_principal;
     margin: 0 0 calc(v.$separacion / 2) 0;
     font-weight: 900;
-    color: v.$azul_100;
     text-align: center;
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 8rem;
 }
 
 h2 {
@@ -24,6 +24,16 @@ h3 {
 }
 
 p {
-    color: v.$azul_100;
     font-size: 2rem;
+}
+
+.title_page {
+    text-align: center;
+    margin: 5rem 0;
+    font-weight: v.$black;
+    color: v.$azul_600;
+}
+
+.description_page {
+    text-align: center;
 }
