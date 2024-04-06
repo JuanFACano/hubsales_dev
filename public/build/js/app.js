@@ -1,1 +1,1 @@
-const body=document.querySelector("body"),container=body.querySelector(".contenedor"),sideBar=body.querySelector(".sidebar");
+const body=document.querySelector("body"),menuItems=body.querySelectorAll(".menu_item"),windowsPathname=window.location.pathname;console.log(windowsPathname),menuItems.forEach(e=>{const n=e.children[0],o=new URL(n.href).pathname;(windowsPathname===o||"/index.php"===windowsPathname&&"/"===o)&&e.classList.add("active")});

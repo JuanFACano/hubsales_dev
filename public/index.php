@@ -2,7 +2,9 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\GeneralController;
 use Controllers\LoginController;
+use Controllers\UsuarioController;
 use MVC\Router;
 
 $router = new Router();
@@ -16,5 +18,12 @@ $router->get('/crear-cuenta', [LoginController::class, 'crear']);
 $router->post('/crear-cuenta', [LoginController::class, 'crear']);
 
 
-// Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
+$router->get('/general', [GeneralController::class, 'general']);
+$router->post('/general', [GeneralController::class, 'general']);
+
+$router->get('/usuarios', [UsuarioController::class, 'usuarios']);
+$router->post('/usuarios', [UsuarioController::class, 'usuarios']);
+
+
+// Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
