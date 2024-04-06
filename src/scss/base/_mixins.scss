@@ -22,7 +22,8 @@
 
 @mixin boton($bgColor, $colorTexto) {
     background-color: $bgColor;
-    padding: 1.5rem 4rem;
+    /* 
+    padding: 1.5rem 4rem; */
     color: $colorTexto;
     font-size: 2rem;
     display: inline-block;
@@ -42,6 +43,14 @@
     &:hover {
         background-color: darken($bgColor, 10%);
         cursor: pointer;
+    }
+
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 1rem 4rem;
+        color: v.$azul-100;
     }
 }
 

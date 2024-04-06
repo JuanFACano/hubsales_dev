@@ -1,0 +1,71 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+// App
+.contenedor_app {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  // App Header
+  .contenedor_header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 2rem;
+
+
+    .contenedor_header_head {
+      padding: 2rem;
+
+      .app_title {
+        text-align: left;
+        color: v.$principal;
+        margin: 0;
+      }
+
+      .app_boton {
+        font-size: 1.5rem;
+      }
+    }
+
+
+    .contenedor_header_search input::placeholder {
+      font-size: 1.8rem;
+    }
+  }
+
+  .contenedor_main {
+    overflow: auto;
+  }
+
+  // App Body
+
+
+  // App Responsive
+  @include m.tablet {
+    .contenedor_header {
+      flex-direction: row;
+    }
+
+    .contenedor_header_head {
+      flex: 3;
+    }
+
+    .contenedor_header_search {
+      flex: 1;
+    }
+
+    .app_boton {
+      max-width: 25rem;
+    }
+
+    .contenedor_main {
+      max-height: 40rem;
+      overflow: auto;
+    }
+  }
+}

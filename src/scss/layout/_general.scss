@@ -1,0 +1,65 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.gen_contenedor {
+  min-height: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+
+  .gen_card_item,
+  .gen_stat_item {
+    border-radius: 2rem;
+    box-shadow: 0px 4px 20px rgba(118, 132, 188, 0.4);
+  }
+
+  .gen_cards {
+    min-height: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+
+    .gen_card_item {
+      min-height: 100%;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .gen_card_item_image {
+        width: 15rem;
+      }
+
+      .gen_card_item_amount {
+        color: v.$principal;
+        font-weight: v.$black;
+        font-size: 8rem;
+      }
+
+      .gen_card_item_desc {
+        color: v.$opacity;
+        font-size: 3rem;
+        font-weight: v.$black;
+      }
+    }
+  }
+
+  .gen_statistics {
+    min-height: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+
+    .gen_stat_item {
+      min-height: 100%;
+      min-width: 100%;
+
+    }
+  }
+}

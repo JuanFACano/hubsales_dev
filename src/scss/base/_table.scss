@@ -1,0 +1,62 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.table {
+  width: 100rem;
+  table-layout: fixed;
+  padding: 2rem;
+
+  @include m.tablet {
+    width: 100%;
+  }
+}
+
+.table_head {
+  position: sticky;
+  top: 0;
+  background-color: v.$azul-500;
+  color: v.$azul-100;
+}
+
+.table_head_item th {
+  padding: 2rem;
+}
+
+.table_head_item {
+  padding: 1.5rem 0;
+}
+
+.table_head_item,
+.table_row td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  border: 1px solid v.$azul-500;
+}
+
+.table_row {
+  background-color: v.$azul-100;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+
+.table_actions {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+
+  &.edit {
+    color: v.$principal;
+  }
+
+  &.delete {
+    color: v.$red;
+  }
+}
