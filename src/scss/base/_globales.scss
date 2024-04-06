@@ -42,6 +42,11 @@ td {
     padding: .5rem 2rem;
 }
 
+input:focus,
+select:focus {
+    outline: .1rem solid v.$principal;
+}
+
 ::-webkit-scrollbar {
     height: 1rem;
     width: 1rem;

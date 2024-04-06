@@ -13,7 +13,7 @@
     <div class="login_image"></div>
     <section class="login_session">
       <h1 class="title_page">Login</h1>
-      <form method="POST" action="/" class="formulario">
+      <form method="POST" action="/" class="formulario_login">
         <div class="campo">
           <input type="email" id="email" name="email" placeholder="Correo">
           <i class="fa-regular fa-user"></i>
