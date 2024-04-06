@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'juanc/hubsales',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '3a084ee8b29c599d2674b46187aa564fbe02594d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'juanc/hubsales' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '3a084ee8b29c599d2674b46187aa564fbe02594d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
