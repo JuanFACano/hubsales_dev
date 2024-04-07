@@ -3,7 +3,7 @@
     <div class="contenedor_header_head">
       <h1 class="app_title">usuarios</h1>
       <div class="button_active_form app_boton boton">
-        <a href="">Agregar Usuario</a>
+        <a href="/usuarios/crear">Agregar Usuario</a>
       </div>
     </div>
     <div class="contenedor_header_search campo">
@@ -56,41 +56,4 @@
       </tbody>
     </table>
   </main>
-
-  <div class="popup">
-    <div class="form_contenedor">
-      <form class="form">
-        <i class="fa-regular fa-circle-xmark button_close_form"></i>
-        <div class="campo_doble">
-          <div class="campo_simple">
-            <label class="campo_label" for="name">nombre</label>
-            <input type="text" name="name" id="name" placeholder="Ejm. Jhon">
-          </div>
-          <div class="campo_simple">
-            <label class="campo_label" for="lastname">apellido</label>
-            <input type="text" name="lastname" id="lastname" placeholder="Ejm. Cena">
-          </div>
-        </div>
-        <div class="campo_simple">
-          <label class="campo_label" for="email">correo</label>
-          <input type="text" name="email" id="email" placeholder="ingrese un correo">
-        </div>
-        <div class="campo_simple">
-          <label class="campo_label" for="password">Contraseña</label>
-          <input type="password" name="password" id="password" placeholder="ingrese un correo">
-        </div>
-        <div>
-          <label class="campo_label" for="role">Rol</label>
-          <p class="campo_desc">Escoja un rol para el usuario</p>
-          <select class="campo_select" name="role" id="role">
-            <span class="focus"></span>
-            <option selected>Seleccione un Rol</option>
-            <option value="1">Admin</option>
-            <option value="2">Usuario Base</option>
-          </select>
-        </div>
-        <input class="boton" type="submit" value="Crear Usuario">
-      </form>
-    </div>
-  </div>
 </div>

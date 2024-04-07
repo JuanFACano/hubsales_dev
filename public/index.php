@@ -24,6 +24,9 @@ $router->post('/general', [GeneralController::class, 'general']);
 $router->get('/usuarios', [UsuarioController::class, 'usuarios']);
 $router->post('/usuarios', [UsuarioController::class, 'usuarios']);
 
+$router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
+$router->post('/usuarios/crear', [UsuarioController::class, 'crear']);
+
 
 // Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

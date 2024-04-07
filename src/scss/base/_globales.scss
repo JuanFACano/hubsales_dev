@@ -26,6 +26,7 @@ body {
 body {
     font-family: v.$fuente_principal;
     font-size: 1.6rem;
+    overflow-x: hidden;
 }
 
 a {
@@ -58,4 +59,41 @@ select:focus {
 
 ::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 .5rem v.$placeholder;
+}
+
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: v.$opacity;
+
+
+    &.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@keyframes show_slide {
+    0% {
+        transform: translateX(100%);
+    }
+
+    40%,
+    50%,
+    60%,
+    70%,
+    80%,
+    90% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+        display: none;
+    }
 }
