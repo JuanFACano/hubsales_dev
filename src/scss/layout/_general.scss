@@ -18,7 +18,7 @@
     min-height: 100%;
     min-width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 2rem;
 
@@ -29,6 +29,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 1rem;
 
       .gen_card_item_image {
         width: 15rem;
@@ -37,7 +38,7 @@
       .gen_card_item_amount {
         color: v.$principal;
         font-weight: v.$black;
-        font-size: 8rem;
+        font-size: 6rem;
       }
 
       .gen_card_item_desc {
@@ -59,6 +60,13 @@
     .gen_stat_item {
       min-height: 100%;
       min-width: 100%;
+
+    }
+  }
+
+  @include m.tablet {
+    .gen_cards {
+      grid-template-columns: repeat(3, 1fr);
 
     }
   }

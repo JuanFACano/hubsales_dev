@@ -33,6 +33,10 @@ p {
     margin: 5rem 0;
     font-weight: v.$black;
     color: v.$azul_600;
+
+    span {
+        display: block;
+    }
 }
 
 .description_page {

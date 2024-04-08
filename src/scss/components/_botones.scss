@@ -2,5 +2,22 @@
 @use 'base/mixins' as m;
 
 .boton {
-  @include m.boton(v.$azul-700, v.$azul-100)
+  @include m.boton(v.$azul-700, v.$azul-100);
+
+  &.pad1-2 {
+    @include m.boton(v.$azul-700, v.$azul-100, 1rem, 2rem);
+  }
+
+  &.pad2-2 {
+    @include m.boton(v.$azul-700, v.$azul-100, 2rem, 2rem);
+  }
+
+  &.width-70 {
+    @include m.boton(v.$azul-700, v.$azul-100, 1rem, 1rem, 10%);
+  }
+}
+
+.contenedor_boton {
+  width: 50%;
+  margin: 0 auto;
 }

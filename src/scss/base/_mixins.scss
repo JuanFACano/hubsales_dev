@@ -20,10 +20,10 @@
 }
 
 
-@mixin boton($bgColor, $colorTexto) {
+@mixin boton($bgColor, $colorTexto, $padx: 0rem, $pady: 0rem, $width: 100%) {
     background-color: $bgColor;
-    /* 
-    padding: 1.5rem 4rem; */
+
+    padding: $padx $pady;
     color: $colorTexto;
     font-size: 2rem;
     display: inline-block;
@@ -33,7 +33,7 @@
     transition-duration: .3s;
     text-align: center;
     display: block;
-    width: 100%;
+    width: $width;
     border-radius: 1.5rem;
 
     @include tablet {
@@ -47,7 +47,7 @@
 
     a {
         display: block;
-        width: 100%;
+        width: $width;
         height: 100%;
         padding: 1rem 4rem;
         color: v.$azul-100;
