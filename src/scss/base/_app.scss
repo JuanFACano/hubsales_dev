@@ -1,6 +1,21 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
+.app {
+  &.dark-mode {
+    .contenedor_app {
+      background-color: v.$azul_800;
+
+      .contenedor_header {
+        .app_title {
+          color: v.$azul-100;
+        }
+      }
+    }
+  }
+}
+
+
 // App
 .contenedor_app {
   min-height: 100%;
@@ -19,7 +34,6 @@
 
 
     .contenedor_header_head {
-      padding: 2rem;
 
       .app_title {
         text-align: left;
@@ -40,6 +54,7 @@
 
   .contenedor_main {
     overflow: auto;
+    margin: 0 2rem;
   }
 
   // App Body
@@ -68,4 +83,8 @@
       overflow: auto;
     }
   }
+}
+
+.app_title {
+  color: red;
 }

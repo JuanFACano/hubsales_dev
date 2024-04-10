@@ -6,12 +6,13 @@
   min-width: 100%;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 2rem;
+  padding: 2rem;
 
   .gen_card_item,
   .gen_stat_item {
     border-radius: 2rem;
-    box-shadow: 0px 4px 20px rgba(118, 132, 188, 0.4);
+    box-shadow: 0px 4px 20px rgba(49, 102, 148, 0.563);
   }
 
   .gen_cards {
@@ -20,7 +21,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 2rem;
 
     .gen_card_item {
       min-height: 100%;
@@ -55,7 +55,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    padding: 2rem;
 
     .gen_stat_item {
       min-height: 100%;

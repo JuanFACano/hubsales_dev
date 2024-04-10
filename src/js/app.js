@@ -6,9 +6,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function iniciarApp() {
+  darkMode();
   tabs();
   goBack();
-  consultarAPIProductos();
+}
+
+function darkMode() {
+  const preferDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+  const app = document.querySelector('.app')
+  const buttons = document.querySelectorAll(".boton")
+
+  if (preferDarkMode.matches) {
+    body.classList.add("dark-mode")
+    app.classList.add("dark-mode")
+    buttons.forEach((button) => {
+      button.classList.add("dark-mode")
+    })
+  } else {
+    body.classList.remove("dark-mode")
+    app.classList.remove("dark-mode")
+    butons.forEach((button) => {
+      button.classList.remove("dark-mode")
+    })
+  }
 }
 
 function tabs() {
@@ -35,101 +55,10 @@ function goBack() {
   }
 }
 
-async function consultarAPIProductos() {
-  try {
-    const url = 'http://localhost:3000/api/productos';
-    const resultado = await fetch(url);
-    const productos = await resultado.json();/* 
-    mostrarProductos(productos)
- */
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-function mostrarProductos(productos) {
-  productos.forEach(producto => {
-    const { prod_id, prod_nombre, prod_precio_unitario, prod_descripcion, prod_existencias, prod_cat_id } = producto
-    // ? scripting prod_nombre
-    const nombreProducto = document.createElement('TD');
-    nombreProducto.textContent = prod_nombre;
-
-    // ? scripting prod_precio
-    const precioUnitario = document.createElement('TD');
-    precioUnitario.textContent = `$${prod_precio_unitario}`;
-
-    // ? scripting prod_descripcion
-    const descripcion = document.createElement('TD');
-    descripcion.textContent = prod_descripcion;
-
-    // ? scripting prod_existencias
-    const existencias = document.createElement('TD');
-    existencias.textContent = prod_existencias;
-
-    // ? scripting prod_cat_id
-    const categoria = document.createElement('TD');
-    categoria.textContent = prod_cat_id;
-
-    // ? scripting actions
-    const actions = document.createElement('TD');
-
-    // ? create button edit
-    const buttonEdit = document.createElement('BUTTON')
-    buttonEdit.classList.add("table_actions")
-    buttonEdit.classList.add("edit")
-
-    buttonEdit.onclick = function () {
-      editarProducto(producto)
-    }
-
-    // ? insert icon in button
-    const buttonEditIcon = document.createElement('I')
-    buttonEditIcon.classList.add("fa-solid")
-    buttonEditIcon.classList.add("fa-pen-to-square")
-
-    buttonEdit.appendChild(buttonEditIcon)
-
-    // ? create button delete
-    const buttonDelete = document.createElement('BUTTON')
-    buttonDelete.classList.add("table_actions")
-    buttonDelete.classList.add("delete")
-
-    buttonDelete.onclick = function () {
-      eliminarProducto(producto)
-    }
-
-    // ? insert icon in button
-    const buttonDeleteIcon = document.createElement('I')
-    buttonDeleteIcon.classList.add("fa-solid")
-    buttonDeleteIcon.classList.add("fa-trash")
-
-    buttonDelete.appendChild(buttonDeleteIcon)
-
-    actions.appendChild(buttonEdit)
-    actions.appendChild(buttonDelete)
-
-    // ? create table row
-    const tableRow = document.createElement('TR');
-    tableRow.classList.add('table_row')
-    tableRow.dataset.idproducto = prod_id;
-
-    // ? add child to table row
-    tableRow.appendChild(nombreProducto);
-    tableRow.appendChild(precioUnitario);
-    tableRow.appendChild(existencias);
-    tableRow.appendChild(categoria);
-    tableRow.appendChild(descripcion);
-    tableRow.appendChild(actions)
-
-    // ? draw table row
-    document.querySelector('#table_body').appendChild(tableRow)
-
-  })
-}
-
 function editarProducto(producto) {
   console.log(producto);
 }
+
 function eliminarProducto(producto) {
   console.log(producto);
 }

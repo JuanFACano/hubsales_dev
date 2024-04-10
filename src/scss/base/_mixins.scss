@@ -21,8 +21,18 @@
 
 
 @mixin boton($bgColor, $colorTexto, $padx: 0rem, $pady: 0rem, $width: 100%) {
-    background-color: $bgColor;
 
+    &.dark-mode {
+        background-color: v.$azul_800;
+        border: .25rem solid v.$azul_700;
+
+        &:hover {
+            background-color: inherit;
+            background-color: darken($bgColor, 30%);
+        }
+    }
+
+    background-color: $bgColor;
     padding: $padx $pady;
     color: $colorTexto;
     font-size: 2rem;

@@ -60,17 +60,20 @@ if ($rol === 1) {
             </ul>
             <div class="sidebar_footer">
                 <div class="user">
-                    <img class="user_avatar" src="/build/img/avatar_image.jpg" alt="usuario avatar">
+                    <a href="/logout">
+                        <i class="fa-solid fa-right-from-bracket user_logout" id="user_logout"></i>
+                    </a>
                     <p class="user_name">Sara Gonzales</p>
                 </div>
             </div>
         </div>
-        <div class="app">
+        <div class="app .transition">
             <?php echo $contenido; ?>
         </div>
     </div>
-    <script src="/build/js/app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/c36f3a940c.js" crossorigin="anonymous"></script>
+    <script src="/build/js/app.js"></script>
 </body>
 
 </html>

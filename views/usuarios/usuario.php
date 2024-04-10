@@ -6,7 +6,7 @@
         <a href="/usuarios/crear">Agregar Usuario</a>
       </div>
     </div>
-    <div class="contenedor_header_search campo">
+    <div class="contenedor_header_search campo campo_search">
       <input type="text" id="search" name="search" placeholder="Buscar Usuario">
       <i class="fa-solid fa-magnifying-glass"></i>
     </div>

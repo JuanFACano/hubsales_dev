@@ -1,49 +1,9 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.formulario_login {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.campo {
-  width: 100%;
-  display: flex;
-  margin-bottom: 3rem;
-  box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.4);
-  border-radius: 1.5rem;
-  padding: 1.5rem 2rem;
-  background: v.$azul_100;
-
-  i {
-    color: v.$principal;
-  }
-
-  input {
-    border-radius: 1.5rem;
-    background: v.$azul_100;
-    color: v.$principal;
-    width: 100%;
-    border: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.form_contenedor {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  height: 100%;
-
-  @include m.tablet {
-    position: inherit;
+.dark-mode {
+  .form {
+    background-color: v.$azul-100;
   }
 }
 
@@ -90,26 +50,68 @@
     gap: 1rem;
     width: 100%;
 
-    input {
+    input,
+    select {
+      font-size: 2rem;
       width: 100%;
       padding: 1rem 2rem;
       background-color: v.$azul-100;
       border: none;
       box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.3);
+      color: v.$principal;
       border-radius: 1.5rem;
     }
-  }
-
-  .campo_select {
-    position: relative;
-    width: 100%;
-    padding: 1rem 2rem;
-    border: none;
-    box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.3);
-    color: v.$principal;
   }
 
   .boton {
     padding: 1rem 2rem;
   }
+}
+
+.formulario_login {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.campo {
+  width: 100%;
+  display: flex;
+  margin-bottom: 3rem;
+  box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.4);
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: v.$azul_100;
+
+  i {
+    color: v.$principal;
+  }
+
+  input {
+    border: none;
+    background-color: v.$azul-100;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.form_contenedor {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  height: 100%;
+
+  @include m.tablet {
+    position: inherit;
+  }
+}
+
+.campo_search {
+  justify-content: space-between;
+  align-items: center;
 }

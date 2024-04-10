@@ -66,9 +66,11 @@ class LoginController
         ], false);
     }
 
-    public static function logout(Router $router)
+    public static function logout()
     {
-        $router->render('auth/logout');
+        session_start();
+        $_SESSION = [];
+        header('Location: /');
     }
 
     public static function crear(Router $router)
