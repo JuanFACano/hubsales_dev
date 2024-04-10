@@ -33,12 +33,13 @@ class Router
         if ($fn) {
             call_user_func($fn, $this); // Call user fn va a llamar una función cuando no sabemos cual sera
         } else {
-            echo "Not Found";
+            self::render('layout/notFound', [], false);
         }
     }
 
     public function render($view, $datos = [], $layout = true)
     {
+        $datos_base = $datos;
         foreach ($datos as $key => $value) {
             $$key = $value;  // Doble signo de dolar significa: variable variable, básicamente nuestra variable sigue siendo la original, pero al asignarla a otra no la reescribe, mantiene su valor, de esta forma el nombre de la variable se asigna dinamicamente
         }

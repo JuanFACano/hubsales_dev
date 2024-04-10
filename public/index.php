@@ -2,35 +2,51 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\APIController;
 use Controllers\GeneralController;
 use Controllers\LoginController;
+use Controllers\ProductoController;
 use Controllers\UsuarioController;
 use MVC\Router;
 
+session_start();
 $router = new Router();
 
 // ? Iniciar sesion
 $router->get('/', [LoginController::class, 'login']);
 $router->post('/', [LoginController::class, 'login']);
+if ($_SESSION['user_login']) {
 
-// ? Cerrar sesión
-$router->get('/logout', [LoginController::class, 'logout']);
+  if ($_SESSION['user_rol'] === 1) {
 
-// ? vista general
-$router->get('/general', [GeneralController::class, 'general']);
-$router->post('/general', [GeneralController::class, 'general']);
+    // ? vista general
+    $router->get('/general', [GeneralController::class, 'index']);
+    $router->post('/general', [GeneralController::class, 'index']);
 
-// ? Vista Usuarios
-$router->get('/usuarios', [UsuarioController::class, 'usuarios']);
-$router->post('/usuarios', [UsuarioController::class, 'usuarios']);
+    // ? Vista Usuarios
+    $router->get('/usuarios', [UsuarioController::class, 'index']);
+    $router->post('/usuarios', [UsuarioController::class, 'index']);
 
-// ? Vista Crear Usuarios
-$router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
-$router->post('/usuarios/crear', [UsuarioController::class, 'crear']);
+    // ? Vista Crear Usuarios
+    $router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
+    $router->post('/usuarios/crear', [UsuarioController::class, 'crear']);
 
-// ? Vista Confirmar Cuenta
-$router->get('/confirmar-cuenta', [UsuarioController::class, 'confirmar']);
-$router->get('/mensaje', [UsuarioController::class, 'mensaje']);
+    $router->get('/confirmar-cuenta', [UsuarioController::class, 'confirmar']);
+  }
 
-// Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
+  // ? Cerrar sesión
+  $router->get('/logout', [LoginController::class, 'logout']);
+
+  // ? Vista Confirmar Cuenta
+  $router->get('/mensaje', [UsuarioController::class, 'mensaje']);
+
+  // Productos
+  $router->get('/productos', [ProductoController::class, 'index']);
+
+  // API
+  $router->get('/api/productos', [APIController::class, 'index']);
+
+  // Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
+}
+
 $router->comprobarRutas();

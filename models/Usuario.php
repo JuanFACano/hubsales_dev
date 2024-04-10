@@ -11,7 +11,6 @@ class Usuario extends ActiveRecord
         'user_nombre',
         'user_apellido',
         'user_rol',
-        'user_avatar',
         'user_correo',
         'user_contrasenia',
         'confirmado',
@@ -22,7 +21,6 @@ class Usuario extends ActiveRecord
     public $user_nombre;
     public $user_apellido;
     public $user_rol;
-    public $user_avatar;
     public $user_correo;
     public $user_contrasenia;
     public $confirmado;
@@ -34,7 +32,6 @@ class Usuario extends ActiveRecord
         $this->user_nombre = $args['nombre'] ?? '';
         $this->user_apellido = $args['apellido'] ?? '';
         $this->user_rol = $args['rol'] ?? null;
-        $this->user_avatar = $args['avatar'] ?? '';
         $this->user_correo = $args['correo'] ?? '';
         $this->user_contrasenia = $args['contrasenia'] ?? '';
         $this->confirmado = $args['confirmado'] ?? 0;
@@ -120,7 +117,7 @@ class Usuario extends ActiveRecord
         $resultado = password_verify($password, $this->user_contrasenia);
 
         if (!$resultado || !$this->confirmado) {
-            set::$alertas['error'][] = "Contraseña incorrecta o cuenta no confirmada";
+            self::$alertas['error'][] = "Contraseña incorrecta o cuenta no confirmada";
         } else {
             return true;
         }

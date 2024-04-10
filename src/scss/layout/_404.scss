@@ -5,4 +5,15 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem;
+
+  .boton {
+    max-width: 30rem;
+    padding: 1rem 2rem;
+    margin-bottom: 10rem;
+  }
 }

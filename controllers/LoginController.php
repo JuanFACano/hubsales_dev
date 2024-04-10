@@ -11,7 +11,6 @@ class LoginController
     {
         $alertas = [];
         $auth = new Usuario;
-
         if ($_SESSION['user_login']) {
             $user = $_SESSION['user_rol'];
 
@@ -44,9 +43,10 @@ class LoginController
 
                         // Redireccionamiento
                         if ($usuario->user_rol === 1) {
-                            $_SESSION['admin'] = $usuario->user_rol ?? null;
+                            $_SESSION['user_rol'] = $usuario->user_rol ?? null;
                             header('Location: /general');
-                        } else {
+                        } else if ($usuario->user_rol === 2) {
+                            $_SESSION['user_rol'] = $usuario->user_rol ?? null;
                             header('Location: /productos');
                         }
 

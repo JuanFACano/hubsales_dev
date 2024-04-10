@@ -6,7 +6,7 @@ use MVC\Router;
 
 class GeneralController
 {
-  public static function general(Router $router)
+  public static function index(Router $router)
   {
     $router->render('layout/general');
   }

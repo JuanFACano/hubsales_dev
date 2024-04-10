@@ -1,10 +1,18 @@
+<?php
+$rol = $_SESSION['user_rol'];
+$admin = false;
+if ($rol === 1) {
+    $admin = true;
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Salón</title>
+    <title>Hubsales</title>
     <link rel="stylesheet" href="/build/css/app.css">
 </head>
 
@@ -17,18 +25,20 @@
                 </div>
             </header>
             <ul class="menu_links">
-                <li class="menu_item">
-                    <a class="menu_link" href="/general">
-                        <span class="menu_text">General</span>
-                        <i class="fa-solid fa-house menu_icon"></i>
-                    </a>
-                </li>
-                <li class="menu_item">
-                    <a class="menu_link" href="/usuarios">
-                        <span class="menu_text">Usuarios</span>
-                        <i class="fa-solid fa-user-group menu_icon"></i>
-                    </a>
-                </li>
+                <?php if ($admin) : ?>
+                    <li class="menu_item">
+                        <a class="menu_link" href="/general">
+                            <span class="menu_text">General</span>
+                            <i class="fa-solid fa-house menu_icon"></i>
+                        </a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_link" href="/usuarios">
+                            <span class="menu_text">Usuarios</span>
+                            <i class="fa-solid fa-user-group menu_icon"></i>
+                        </a>
+                    </li>
+                <?php endif ?>
                 <li class="menu_item">
                     <a class="menu_link" href="/productos">
                         <span class="menu_text">Productos</span>
