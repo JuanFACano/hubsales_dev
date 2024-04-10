@@ -33,7 +33,6 @@ class LoginController
 
                     // ? Verificar contraseña
                     if ($usuario->comprobarContraseniaAndConfirmado($auth->user_contrasenia)) {
-                        // Autenticar usuario
                         session_start();
 
                         $_SESSION['user_id'] = $usuario->user_id;
@@ -68,7 +67,6 @@ class LoginController
 
     public static function logout()
     {
-        session_start();
         $_SESSION = [];
         header('Location: /');
     }

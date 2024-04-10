@@ -77,6 +77,10 @@ td {
     padding: .5rem 2rem;
 }
 
+input {
+    width: 100%;
+}
+
 input:focus,
 select:focus {
     outline: .1rem solid v.$principal;

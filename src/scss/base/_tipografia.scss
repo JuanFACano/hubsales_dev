@@ -1,6 +1,17 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+.dark-mode {
+    .title_page {
+        color: v.$azul_100;
+    }
+
+    .description_page {
+        color: v.$azul_100;
+        font-weight: v.$bold;
+    }
+}
+
 h1,
 h2,
 h3 {
@@ -11,7 +22,7 @@ h3 {
 }
 
 h1 {
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
 h2 {
@@ -29,16 +40,19 @@ p {
 }
 
 .title_page {
+    margin: 2rem;
     text-align: center;
-    margin: 5rem 0;
     font-weight: v.$black;
     color: v.$azul_600;
 
     span {
         display: block;
+        font-size: 6rem;
     }
 }
 
 .description_page {
+    margin: 2rem;
     text-align: center;
+    font-size: 2.5rem;
 }

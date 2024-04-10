@@ -17,6 +17,10 @@ $router->get('/', [LoginController::class, 'login']);
 $router->post('/', [LoginController::class, 'login']);
 if ($_SESSION['user_login']) {
 
+  // ? Cerrar sesión
+  $router->get('/logout', [LoginController::class, 'logout']);
+
+  // ? Vistas para usuario administrador
   if ($_SESSION['user_rol'] === 1) {
 
     // ? vista general
@@ -31,14 +35,16 @@ if ($_SESSION['user_login']) {
     $router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
     $router->post('/usuarios/crear', [UsuarioController::class, 'crear']);
 
+    // ? Vista Mensaje Confirmar Cuenta
     $router->get('/confirmar-cuenta', [UsuarioController::class, 'confirmar']);
+
+    // ? Vista Confirmar Cuenta
+    $router->get('/mensaje', [UsuarioController::class, 'mensaje']);
   }
 
-  // ? Cerrar sesión
-  $router->get('/logout', [LoginController::class, 'logout']);
+  // ? Vistas para usuario Base
+  // ---------------------------------------------------------
 
-  // ? Vista Confirmar Cuenta
-  $router->get('/mensaje', [UsuarioController::class, 'mensaje']);
 
   // Productos
   $router->get('/productos', [ProductoController::class, 'index']);

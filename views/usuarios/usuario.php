@@ -7,8 +7,13 @@
       </div>
     </div>
     <div class="contenedor_header_search campo campo_search">
-      <input type="text" id="search" name="search" placeholder="Buscar Usuario">
-      <i class="fa-solid fa-magnifying-glass"></i>
+      <form action="">
+        <input type="text" id="search" name="search" placeholder="Buscar Usuario">
+        <input type="submit" value="">
+      </form>
+      <button class="send">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
   </header>
   <main class="contenedor_main">
