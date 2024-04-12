@@ -12,7 +12,7 @@
   .gen_card_item,
   .gen_stat_item {
     border-radius: 2rem;
-    box-shadow: 0px 4px 20px rgba(49, 102, 148, 0.563);
+    background-color: v.$principal;
   }
 
   .gen_cards {
@@ -36,13 +36,13 @@
       }
 
       .gen_card_item_amount {
-        color: v.$principal;
+        color: v.$azul-100;
         font-weight: v.$black;
         font-size: 6rem;
       }
 
       .gen_card_item_desc {
-        color: v.$opacity;
+        color: v.$azul-200;
         font-size: 3rem;
         font-weight: v.$black;
       }

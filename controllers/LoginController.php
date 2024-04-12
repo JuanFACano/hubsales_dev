@@ -11,7 +11,7 @@ class LoginController
     {
         $alertas = [];
         $auth = new Usuario;
-        if ($_SESSION['user_login']) {
+        if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
             $user = $_SESSION['user_rol'];
 
             if ($user === 1) {
@@ -37,6 +37,7 @@ class LoginController
 
                         $_SESSION['user_id'] = $usuario->user_id;
                         $_SESSION['user_nombre'] = $usuario->user_nombre . " " . $usuario->user_apellido;
+                        $_SESSION['user_primer_nombre'] = $usuario->user_nombre;
                         $_SESSION['user_correo'] = $usuario->user_correo;
                         $_SESSION['user_login'] = true;
 
@@ -48,8 +49,6 @@ class LoginController
                             $_SESSION['user_rol'] = $usuario->user_rol ?? null;
                             header('Location: /productos');
                         }
-
-                        debuguear($_SESSION);
                     }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no registrado');

@@ -97,9 +97,12 @@ class ActiveRecord
         $sanitizado = [];
 
         foreach ($atributos as $key => $value) {
-            $sanitizado[$key] = $value;
+            if (is_string($value) && strlen($value) < 60) {
+                $sanitizado[$key] = strtolower($value);
+            } else {
+                $sanitizado[$key] = $value;
+            }
         }
-
         return $sanitizado;
     }
 
@@ -115,21 +118,6 @@ class ActiveRecord
         }
     }
 
-    // Registros - CRUD
-    public function guardar($id_base = '')
-    {
-        $resultado = '';
-
-        if (!is_null($this->$id_base)) {
-            $resultado = $this->actualizar($id_base);
-        } else {
-            // Creando un nuevo registro
-            $resultado = $this->crear();
-        }
-
-        return $resultado;
-    }
-
     // Todos los registros
     public static function all()
     {
@@ -139,9 +127,9 @@ class ActiveRecord
     }
 
     // Busca un registro por su id
-    public static function find($id)
+    public static function find($id, $campo)
     {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE id = {$id}";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE {$campo} = {$id}";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
@@ -186,25 +174,31 @@ class ActiveRecord
     // Actualizar el registro
     public function actualizar($id_base)
     {
-        // Sanitizar los datos
-        $atributos = $this->sanitizarAtributos();
+        try {
 
-        // Iterar para ir agregando cada campo de la BD
-        $valores = [];
+            // Sanitizar los datos
+            $atributos = $this->sanitizarAtributos();
 
-        foreach ($atributos as $key => $value) {
-            $valores[] = "{$key}='{$value}'";
+            // Iterar para ir agregando cada campo de la BD
+            $valores = [];
+
+            foreach ($atributos as $key => $value) {
+                $valores[] = "{$key}='{$value}'";
+            }
+
+
+            // Consulta SQL
+            $query = "UPDATE " . static::$tabla . " SET ";
+            $query .= join(', ', $valores);
+            $query .= " WHERE " . $id_base . " = '" . $this->$id_base . "'";
+
+            // Actualizar BD
+            $resultado = self::$db->prepare($query);
+            $resultado->execute();
+            return $resultado;
+        } catch (\Throwable $th) {
+            debuguear($th);
         }
-
-        // Consulta SQL
-        $query = "UPDATE " . static::$tabla . " SET ";
-        $query .= join(', ', $valores);
-        $query .= " WHERE " . $id_base . " = '" . $this->$id_base . "'";
-
-        // Actualizar BD
-        $resultado = self::$db->prepare($query);
-        $resultado->execute();
-        return $resultado;
     }
 
     // Eliminar un Registro por su ID
@@ -217,23 +211,18 @@ class ActiveRecord
     }
 
     // Query Builder
-    public static function queryBuilderAll($campos, $tablas_join, $columnas)
-    {
-        $query = QueryBuilder::joinAll($campos, $tablas_join, $columnas, self::$db);
-        $datos = self::consultarSQLJOIN($query);
-        return $datos;
-    }
 
     // funcion para consultar query especializado en JOIN_ALL
-    public static function consultarSQLJOIN($query)
+    public static function consultarSQLBuilderAll($campos, $tablas_join, $columnas,)
     {
+        $query = QueryBuilder::joinAll($campos, $tablas_join, $columnas, self::$db);
         // Consultar la base de datos
         $resultado = self::$db->prepare($query);
         $resultado->execute();
         // Iterar los resultados
         $array = [];
         while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
-            $array[] = static::crearobjetoJoin($registro, $registro);
+            $array[] = static::crearobjetoBuilder($registro, $registro);
         }
 
         // liberar la memoria
@@ -242,16 +231,34 @@ class ActiveRecord
         // retornar los resultados
         return $array;
     }
+
+    public static function consultarSQLFind($campos, $tablas_join, $columnas, $column, $column_id)
+    {
+        $query = QueryBuilder::find($campos, $tablas_join, $columnas, $column, $column_id);
+        // Consultar la base de datos
+        $resultado = self::$db->prepare($query);
+        $resultado->execute();
+        $dato = $resultado->fetch(PDO::FETCH_ASSOC);
+        return $dato;
+    }
+
     // funcion para crear objeto de tipo especializado en JOIN_ALL
-    public static function crearobjetoJoin($registro, $campo_add = [])
+    public static function crearobjetoBuilder($registro, $campo_add = [])
     {
         $objeto = new static;
         foreach ($registro as $key => $value) {
+            $objeto->$key = $value;
         }
+        $objetoLimpio = self::limpiarObjeto($objeto);
 
-        if (!empty($campo_add)) {
-            foreach ($campo_add as $key => $value) {
-                $objeto->$key = $value;
+        return $objetoLimpio;
+    }
+
+    public static function limpiarObjeto($objeto)
+    {
+        foreach ($objeto as $key => $value) {
+            if (property_exists($objeto, $key) && $value == "" || is_null($value)) {
+                unset($objeto->$key);
             }
         }
         return $objeto;

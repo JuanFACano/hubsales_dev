@@ -34,7 +34,7 @@ class Usuario extends ActiveRecord
         $this->user_rol = $args['rol'] ?? null;
         $this->user_correo = $args['correo'] ?? '';
         $this->user_contrasenia = $args['contrasenia'] ?? '';
-        $this->confirmado = $args['confirmado'] ?? 0;
+        $this->confirmado = $args['confirmado'] ?? '';
         $this->token = $args['token'] ?? '';
     }
 
@@ -121,5 +121,17 @@ class Usuario extends ActiveRecord
         } else {
             return true;
         }
+    }
+
+    public function usuarioEncontrado($id)
+    {
+        $consulta = "SELECT * FROM " . self::$tabla . " WHERE user_id = '" . $id . "' LIMIT 1";
+        $resultado = self::$db->prepare($consulta);
+        $resultado->execute();
+        if ($resultado->rowCount() == 0) {
+            self::$alertas['error'][] = "No se pudo actualizar el usuario";
+        }
+
+        return self::$alertas;
     }
 }

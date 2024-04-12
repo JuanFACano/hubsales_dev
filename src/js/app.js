@@ -6,29 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function iniciarApp() {
-  darkMode();
+
   tabs();
   goBack();
-}
-
-function darkMode() {
-  const preferDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
-  const app = document.querySelector('.app')
-  const buttons = document.querySelectorAll(".boton")
-
-  if (preferDarkMode.matches) {
-    body.classList.add("dark-mode")
-    app.classList.add("dark-mode")
-    buttons.forEach((button) => {
-      button.classList.add("dark-mode")
-    })
-  } else {
-    body.classList.remove("dark-mode")
-    app.classList.remove("dark-mode")
-    butons.forEach((button) => {
-      button.classList.remove("dark-mode")
-    })
-  }
 }
 
 function tabs() {

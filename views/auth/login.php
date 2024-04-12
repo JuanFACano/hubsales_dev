@@ -19,12 +19,13 @@ include_once __DIR__ . '/../templates/alertas.php';
       <h1 class="title_page">Login</h1>
       <form method="POST" action="/" class="formulario_login">
         <div class="campo">
-          <input type="email" id="correo" name="correo" value="<?php echo s( $auth->user_correo ) ?>" placeholder="Correo">
-          <i class="fa-regular fa-user"></i>
+          <input type="email" id="correo" name="correo" value="<?php echo s($auth->user_correo) ?>" placeholder="Correo">
+          <img class="icon blue sm" src="/build/img/user-solid.svg" alt="home icon">
         </div>
         <div class="campo">
           <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña">
-          <i class="fa-solid fa-lock"></i>
+          <img class="icon blue sm" src="/build/img/lock-solid.svg" alt="home icon">
+
         </div>
         <input type="submit" class="boton pad1-2" value="Iniciar Sesión">
       </form>
@@ -33,4 +34,5 @@ include_once __DIR__ . '/../templates/alertas.php';
 
   <script src="https://kit.fontawesome.com/c36f3a940c.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

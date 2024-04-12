@@ -1,21 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.app {
-  &.dark-mode {
-    .table_head {
-      background-color: v.$azul-600;
-    }
-
-    .table_row {
-      background-color: v.$azul-200;
-
-      td {
-        border: none;
-      }
-    }
-  }
-}
 
 .table {
   width: 100rem;
@@ -29,8 +14,10 @@
 .table_head {
   position: sticky;
   top: 0;
-  background-color: v.$azul-500;
+  background-color: v.$principal;
   color: v.$azul-100;
+  z-index: 10000;
+  box-shadow: rgb(78, 102, 194) 0px 8px 29px;
 }
 
 .table_head_item th {

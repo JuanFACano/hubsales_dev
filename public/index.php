@@ -15,7 +15,8 @@ $router = new Router();
 // ? Iniciar sesion
 $router->get('/', [LoginController::class, 'login']);
 $router->post('/', [LoginController::class, 'login']);
-if ($_SESSION['user_login']) {
+
+if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
 
   // ? Cerrar sesión
   $router->get('/logout', [LoginController::class, 'logout']);
@@ -35,8 +36,12 @@ if ($_SESSION['user_login']) {
     $router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
     $router->post('/usuarios/crear', [UsuarioController::class, 'crear']);
 
+    // ? Vista Editar Usuarios
+    $router->get('/usuarios/editar', [UsuarioController::class, 'editar']);
+    $router->post('/usuarios/editar', [UsuarioController::class, 'editar']);
+
     // ? Vista Mensaje Confirmar Cuenta
-    $router->get('/confirmar-cuenta', [UsuarioController::class, 'confirmar']);
+    $router->get('/confirmar', [UsuarioController::class, 'confirmar']);
 
     // ? Vista Confirmar Cuenta
     $router->get('/mensaje', [UsuarioController::class, 'mensaje']);

@@ -6,16 +6,16 @@ use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
-use function PHPSTORM_META\type;
 
 class UsuarioController
 {
-    protected static $campos = ['user_nombre', 'rol_nombre', 'user_correo'];
+    protected static $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_nombre', 'rol_id', 'user_correo'];
+    protected static $column_id = 'user_id';
     protected static $tablas_join = ['usuarios', 'roles'];
     protected static  $columnas = ['user_rol', 'rol_id'];
     public static function index(Router $router)
     {
-        $usuariosJoin = Usuario::queryBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
+        $usuariosJoin = Usuario::consultarSQLBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
 
         $router->render('usuarios/usuario', $usuariosJoin);
     }
@@ -51,7 +51,7 @@ class UsuarioController
                     $email->enviarConfirmacion();
 
                     // crear usuario
-                    $resultado = $usuario->guardar();
+                    $resultado = $usuario->crear();
 
                     if ($resultado) {
                         header('Location: /mensaje');
@@ -60,7 +60,27 @@ class UsuarioController
             }
         }
 
-        $router->render('usuarios/crear_usuario', ['usuario' => $usuario, 'alertas' => $alertas]);
+        $router->render('usuarios/user_crear', ['usuario' => $usuario, 'alertas' => $alertas]);
+    }
+
+    public static function editar(Router $router)
+    {
+        $id_get = $_GET['id'];
+        $usuario = new Usuario();
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === "GET") {
+            $alertas = $usuario->usuarioEncontrado($id_get);
+            $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_id', 'user_correo'];
+            $resultado = Usuario::consultarSQLFind($campos, self::$tablas_join, self::$columnas, self::$column_id, $id_get);
+        } else {
+            if (empty($alertas)) {
+                $usuario->sincronizar($_POST);
+                header('location: /usuarios');
+            }
+        }
+
+        $router->render('usuarios/user_editar', ['resultado' => $resultado, 'alertas' => $alertas]);
     }
 
     public static function mensaje(Router $router)
@@ -81,7 +101,7 @@ class UsuarioController
             // ? Modificar Usuario
             $usuario->confirmado = "1";
             $usuario->token = NULL;
-            $usuario->guardar('user_id');
+            $usuario->actualizar('user_id');
             Usuario::setAlerta('exito', "Cuenta comprobada correctamente");
         }
 
@@ -89,8 +109,8 @@ class UsuarioController
         $alertas = Usuario::getAlertas();
 
         // ? render a la vista
-        $router->render('usuarios/confirmar-cuenta', [
+        $router->render('usuarios/confirmar', [
             'alertas' => $alertas,
-        ]);
+        ], false);
     }
 }

@@ -8,7 +8,7 @@
     </div>
     <div class="contenedor_header_search campo campo_search">
       <input type="text" id="search" name="search" placeholder="Buscar Producto">
-      <i class="fa-solid fa-magnifying-glass"></i>
+      <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="home icon">
     </div>
   </header>
   <main class="contenedor_main">
@@ -31,10 +31,10 @@
             <td><?php echo $dato->prod_descripcion ?></td>
             <td>
               <button class="table_actions edit">
-                <i class="fa-solid fa-pen-to-square"></i>
+                <img class="icon blue sm" src="/build/img/pen-to-square-solid.svg" alt="home icon">
               </button>
               <button class="table_actions delete">
-                <i class="fa-solid fa-trash"></i>
+                <img class="icon red sm" src="/build/img/trash-solid.svg" alt="home icon">
               </button>
 
             </td>

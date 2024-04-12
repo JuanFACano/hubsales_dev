@@ -9,7 +9,6 @@
     <div class="contenedor_header_search campo campo_search">
       <form action="">
         <input type="text" id="search" name="search" placeholder="Buscar Usuario">
-        <input type="submit" value="">
       </form>
       <button class="send">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -27,16 +26,16 @@
       <tbody class="table_body">
         <?php foreach ($datos_base as $dato) : ?>
           <tr class="table_row">
-            <td><?php echo $dato->user_nombre ?></td>
+            <td><?php echo $dato->user_nombre . " " . $dato->user_apellido ?></td>
             <td><?php echo $dato->rol_nombre ?></td>
             <td class="td_correo"><?php echo $dato->user_correo ?></td>
             <td>
-              <button class="table_actions edit">
+              <a href="/usuarios/editar?id=<?php echo $dato->user_id ?>" class="table_actions edit">
                 <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-              <button class="table_actions delete">
+              </a>
+              <a data-id="<?php echo $dato->user_id ?>" class="table_actions delete">
                 <i class="fa-solid fa-trash"></i>
-              </button>
+              </a>
             </td>
           </tr>
         <?php endforeach ?>

@@ -64,6 +64,14 @@
     }
 }
 
+@mixin hover() {
+    transition: transform .3s;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}
+
 @mixin grid($columnas, $espaciado ) {
     display: grid;
     gap: $espaciado;

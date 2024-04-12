@@ -16,7 +16,7 @@ class ProductoController
 
   public static function index(Router $router)
   {
-    $productosJoin = Producto::queryBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
+    $productosJoin = Producto::consultarSQLBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
 
     $router->render('productos/producto', $productosJoin);
   }

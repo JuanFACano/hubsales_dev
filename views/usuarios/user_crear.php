@@ -21,8 +21,8 @@
       <label class="campo_label" for="rol">Rol</label>
       <select name="rol" id="rol">
         <option value="">Seleccione un Rol</option>
-        <option value="1">Admin</option>
-        <option value="2">Usuario Base</option>
+        <option <?php echo s($usuario->user_rol == 1 ? "selected" : '') ?> value="1">Admin</option>
+        <option <?php echo s($usuario->user_rol == 2 ? "selected" : '') ?> value="2">Usuario Base</option>
       </select>
     </div>
     <div class="campo_simple">
