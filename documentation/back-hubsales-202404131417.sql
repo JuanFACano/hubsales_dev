@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.2
 
--- Started on 2024-04-09 01:12:42
+-- Started on 2024-04-13 14:17:06
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -336,11 +336,10 @@ CREATE TABLE public.usuarios (
     user_nombre character varying(45) NOT NULL,
     user_apellido character varying(45) NOT NULL,
     user_rol integer,
-    user_avatar character varying(60),
     user_correo character varying(45) NOT NULL,
     user_contrasenia character varying(60) NOT NULL,
-    confirmado integer,
-    token character varying(15)
+    token character varying(15),
+    confirmado character varying
 );
 
 
@@ -452,6 +451,10 @@ COPY public.abonos (abono_id, abono_monto, abono_fecha, abono_fac_id) FROM stdin
 --
 
 COPY public.categorias_productos (cat_id, cat_nombre, cat_descripcion) FROM stdin;
+1	Café negro	Café sin aditivos ni mezclas, puro y fuerte
+2	Café aromatizado	Café con sabores añadidos como vainilla, caramelo, etc.
+3	Café orgánico	Café cultivado sin pesticidas ni fertilizantes químicos
+4	Café gourmet	Café de alta calidad, con granos seleccionados y procesos especiales de producción
 \.
 
 
@@ -492,6 +495,26 @@ COPY public.facturas (fac_id, fac_fecha, fac_fecha_venc, fac_cli_id, fac_user_id
 --
 
 COPY public.productos (prod_id, prod_nombre, prod_descripcion, prod_precio_unitario, prod_existencias, prod_cat_id) FROM stdin;
+1	Café colombiano	Café 100% arábica cultivado en las montañas de Colombia	5.99	100	2
+2	Café guatemalteco	Café de altura con notas afrutadas y chocolate	6.49	80	3
+3	Café etíope	Café con cuerpo ligero y notas florales	7.99	120	1
+4	Café brasileño	Café con sabor a nuez y bajo nivel de acidez	6.99	90	4
+5	Café costarricense	Café con cuerpo medio y notas cítricas	7.49	110	2
+6	Café jamaicano Blue Mountain	Café premium con notas suaves y delicadas	14.99	50	3
+7	Café mexicano Chiapas	Café orgánico con sabor a chocolate y caramelo	8.49	70	1
+8	Café peruano	Café de altura con notas a frutas tropicales	7.99	100	4
+9	Café venezolano	Café con cuerpo intenso y aroma a cacao	6.99	80	2
+10	Café ecuatoriano	Café con sabor dulce y suave acidez	8.99	90	3
+11	Café colombiano	Café 100% arábica cultivado en las montañas de Colombia	5.99	100	2
+12	Café guatemalteco	Café de altura con notas afrutadas y chocolate	6.49	80	3
+13	Café brasileño	Café con sabor a nuez y bajo nivel de acidez	6.99	90	4
+14	Café costarricense	Café con cuerpo medio y notas cítricas	7.49	110	2
+15	Café jamaicano Blue Mountain	Café premium con notas suaves y delicadas	14.99	50	3
+16	Café mexicano Chiapas	Café orgánico con sabor a chocolate y caramelo	8.49	70	1
+17	Café peruano	Café de altura con notas a frutas tropicales	7.99	100	4
+18	Café venezolano	Café con cuerpo intenso y aroma a cacao	6.99	80	2
+19	Café ecuatoriano	Café con sabor dulce y suave acidez	8.99	90	3
+20	Café etíope	Café con cuerpo ligero y notas florales	7.99	120	1
 \.
 
 
@@ -513,9 +536,9 @@ COPY public.roles (rol_id, rol_nombre, rol_descripcion) FROM stdin;
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.usuarios (user_id, user_nombre, user_apellido, user_rol, user_avatar, user_correo, user_contrasenia, confirmado, token) FROM stdin;
-22	 Jhon	Cano	2		juan@cano.com	$2y$10$FdXeWdW4wwUH29.nr012KutVrNqNLdfJxEg73SQlrFr3/xm3NSVbW	0	6612432a3f9bc
-21	 Admin name	LastName	1		admin@admin.com	$2y$10$XM5Rk6i3Cia0fhMnBMfjD.4ZXqpV4QDUUCAHQy6kwvEiFCAWbQ1ai	1	
+COPY public.usuarios (user_id, user_nombre, user_apellido, user_rol, user_correo, user_contrasenia, token, confirmado) FROM stdin;
+1	juan	cano	1	admin@admin.com	$2y$10$XzGsNxsQkZy/ZaMNz05t6u4SS8Ql3U6dyVO5Dt1IYBt6oFU9quQoq		1
+4	juanito	alimaÑa	2	correocorreo@correo.com	$2y$10$cXpa5yWTE6lk5umMuBKw4uGEzj4GHeoI2YsoA7nmBoyAG5lt2IIqS		1
 \.
 
 
@@ -534,7 +557,7 @@ SELECT pg_catalog.setval('public.abonos_abono_id_seq', 1, false);
 -- Name: categorias_productos_cat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categorias_productos_cat_id_seq', 1, false);
+SELECT pg_catalog.setval('public.categorias_productos_cat_id_seq', 4, true);
 
 
 --
@@ -570,7 +593,7 @@ SELECT pg_catalog.setval('public.facturas_fac_id_seq', 1, false);
 -- Name: productos_prod_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.productos_prod_id_seq', 1, false);
+SELECT pg_catalog.setval('public.productos_prod_id_seq', 20, true);
 
 
 --
@@ -588,7 +611,7 @@ SELECT pg_catalog.setval('public.roles_rol_id_seq', 2, true);
 -- Name: usuarios_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_user_id_seq', 22, true);
+SELECT pg_catalog.setval('public.usuarios_user_id_seq', 8, true);
 
 
 --
@@ -726,7 +749,7 @@ ALTER TABLE ONLY public.usuarios
     ADD CONSTRAINT usuarios_user_rol_fkey FOREIGN KEY (user_rol) REFERENCES public.roles(rol_id) ON UPDATE SET NULL ON DELETE SET NULL;
 
 
--- Completed on 2024-04-09 01:12:42
+-- Completed on 2024-04-13 14:17:06
 
 --
 -- PostgreSQL database dump complete
