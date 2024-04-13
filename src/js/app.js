@@ -35,10 +35,109 @@ function goBack() {
   }
 }
 
-function editarProducto(producto) {
-  console.log(producto);
+
+const buttonDelete = document.querySelectorAll('#delete');
+buttonDelete.forEach(button => {
+  button.addEventListener('click', () => {
+    alerta(button, 'delete');
+  })
+});
+
+
+function alerta(button, method) {
+  let inputHidden = document.createElement('INPUT');
+  inputHidden.setAttribute("type", "hidden");
+
+  let inputSend = document.createElement('INPUT');
+  inputSend.setAttribute("class", "boton")
+  inputSend.classList.add("pad1-4")
+
+  let actionAlert = "";
+
+  if (method == 'delete') {
+    const [inputH, inputS, action] = eliminarUsuario(button);
+    inputHidden = inputH
+    inputSend = inputS
+    actionAlert = action
+  }
+
+
+  const formImage = document.createElement('IMG');
+  formImage.classList.add("form_image")
+  formImage.setAttribute("src", "/build/img/message-solid.svg");
+
+  const formTitle = document.createElement('H2');
+  formTitle.classList.add("form_title")
+  formTitle.textContent = "¿Estas seguro?";
+
+  const formSpan = document.createElement('SPAN');
+  formSpan.classList.add("form_span")
+  formSpan.classList.add("dark")
+  formSpan.textContent = " deshacer"
+
+  const formText = document.createElement('P');
+  formText.classList.add("form_text")
+  formText.textContent = "una vez confirmado, el cambio no se puede"
+
+  formText.appendChild(formSpan);
+
+  const inputCancel = document.createElement('BUTTON');
+  inputCancel.textContent = "Cancelar";
+  inputCancel.setAttribute("class", "boton")
+  inputCancel.classList.add("pad1-4")
+
+
+  const inputContainer = document.createElement('DIV');
+  inputContainer.classList.add("buttons_container")
+  inputContainer.appendChild(inputCancel)
+  inputContainer.appendChild(inputSend)
+
+  const form = document.createElement('FORM')
+  form.setAttribute("method", "POST")
+  form.setAttribute("action", actionAlert)
+  form.classList.add("form")
+  form.classList.add("form_poupup")
+  form.classList.add("delete")
+
+
+  form.appendChild(formImage)
+  form.appendChild(formTitle);
+  form.appendChild(formText);
+  form.appendChild(inputHidden);
+  form.appendChild(inputContainer);
+
+  const popupDiv = document.createElement('DIV');
+  popupDiv.setAttribute("class", "section-popup");
+  popupDiv.appendChild(form);
+
+  document.querySelector('body').appendChild(popupDiv)
+
+
+  inputCancel.addEventListener('click', (event) => {
+    event.preventDefault();
+    nodo = popupDiv.parentNode.removeChild(popupDiv)
+  })
+
 }
 
-function eliminarProducto(producto) {
-  console.log(producto);
+function eliminarUsuario(button) {
+  const id = parseInt(button.getAttribute("data-id"));
+  const action = "/api/eliminar/usuario"
+  const inputHidden = document.createElement('INPUT');
+  inputHidden.setAttribute("type", "hidden");
+  inputHidden.setAttribute("name", "id")
+  inputHidden.setAttribute("value", id)
+
+  const inputSend = document.createElement('INPUT');
+  inputSend.setAttribute("type", "submit");
+  inputSend.setAttribute("class", "boton")
+  inputSend.classList.add("pad1-4")
+  inputSend.classList.add("delete")
+  inputSend.setAttribute("value", "Eliminar")
+
+  return [inputHidden, inputSend, action];
+}
+
+function eliminarProducto(button) {
+
 }

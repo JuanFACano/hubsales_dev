@@ -34,5 +34,6 @@ $usuario = $datos['resultado'];
       <input type="password" name="contrasenia" id="contrasenia" placeholder="ingrese una contraseña">
     </div>
     <input class="boton" type="submit" value="Actualizar Usuario">
+    <a class="boton" href="/usuarios">Volver</a>
   </form>
 </div>

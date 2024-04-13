@@ -21,6 +21,9 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
   // ? Cerrar sesión
   $router->get('/logout', [LoginController::class, 'logout']);
 
+  // ? Productos
+  $router->get('/productos', [ProductoController::class, 'index']);
+
   // ? Vistas para usuario administrador
   if ($_SESSION['user_rol'] === 1) {
 
@@ -30,7 +33,7 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
 
     // ? Vista Usuarios
     $router->get('/usuarios', [UsuarioController::class, 'index']);
-    $router->post('/usuarios', [UsuarioController::class, 'index']);
+    $router->post('/usuarios', [UsuarioController::class, 'search']);
 
     // ? Vista Crear Usuarios
     $router->get('/usuarios/crear', [UsuarioController::class, 'crear']);
@@ -40,24 +43,16 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
     $router->get('/usuarios/editar', [UsuarioController::class, 'editar']);
     $router->post('/usuarios/editar', [UsuarioController::class, 'editar']);
 
+
+    $router->post('/api/eliminar/usuario', [APIController::class, 'eliminarUsuario']);
+
     // ? Vista Mensaje Confirmar Cuenta
     $router->get('/confirmar', [UsuarioController::class, 'confirmar']);
 
     // ? Vista Confirmar Cuenta
     $router->get('/mensaje', [UsuarioController::class, 'mensaje']);
   }
-
-  // ? Vistas para usuario Base
-  // ---------------------------------------------------------
-
-
-  // Productos
-  $router->get('/productos', [ProductoController::class, 'index']);
-
-  // API
-  $router->get('/api/productos', [APIController::class, 'index']);
-
-  // Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
 }
 
+// Comprobar y validar las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

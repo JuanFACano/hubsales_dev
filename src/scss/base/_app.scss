@@ -1,19 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.app {
-  &.dark-mode {
-    .contenedor_app {
-      background-color: v.$azul_800;
-
-      .contenedor_header {
-        .app_title {
-          color: v.$azul-100;
-        }
-      }
-    }
-  }
-}
 
 
 // App
@@ -48,9 +35,13 @@
       }
     }
 
+    .contenedor_header_search {
+      position: relative;
 
-    .contenedor_header_search input::placeholder {
-      font-size: 1.8rem;
+
+      input::placeholder {
+        font-size: 1.8rem;
+      }
     }
   }
 
@@ -69,7 +60,7 @@
     }
 
     .contenedor_header_head {
-      flex: 3;
+      flex: 1;
     }
 
     .contenedor_header_search {

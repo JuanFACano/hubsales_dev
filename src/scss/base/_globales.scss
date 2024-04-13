@@ -20,6 +20,7 @@ html {
 }
 
 body {
+    position: relative;
     font-family: v.$fuente_principal;
     font-size: 1.6rem;
     overflow-x: hidden;
@@ -129,4 +130,15 @@ select:focus {
 
 .capitalize {
     text-transform: capitalize;
+}
+
+.unset {
+    all: unset;
+}
+
+.send {
+    position: absolute;
+    top: 25%;
+    right: 2rem;
+    cursor: pointer;
 }

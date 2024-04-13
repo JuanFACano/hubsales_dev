@@ -30,17 +30,17 @@
             <td><?php echo $dato->cat_nombre ?></td>
             <td><?php echo $dato->prod_descripcion ?></td>
             <td>
-              <button class="table_actions edit">
+              <a href="/productos/editar?id=<?php echo ''; ?>" class="table_actions edit">
                 <img class="icon blue sm" src="/build/img/pen-to-square-solid.svg" alt="home icon">
-              </button>
-              <button class="table_actions delete">
+              </a>
+              <button id="delete" class="table_actions delete">
                 <img class="icon red sm" src="/build/img/trash-solid.svg" alt="home icon">
               </button>
-
             </td>
           </tr>
         <?php endforeach ?>
       </tbody>
     </table>
+
   </main>
 </div>

@@ -11,13 +11,13 @@ class UsuarioController
 {
     protected static $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_nombre', 'rol_id', 'user_correo'];
     protected static $column_id = 'user_id';
+    protected static $column_search = 'user_nombre';
     protected static $tablas_join = ['usuarios', 'roles'];
     protected static  $columnas = ['user_rol', 'rol_id'];
-    public static function index(Router $router)
+    public static function index(Router $router, $alertas = [])
     {
         $usuariosJoin = Usuario::consultarSQLBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
-
-        $router->render('usuarios/usuario', $usuariosJoin);
+        $router->render('usuarios/usuario', ["usuarios" => $usuariosJoin, "alertas" => $alertas]);
     }
 
     public static function crear(Router $router)
@@ -32,7 +32,6 @@ class UsuarioController
             //? Sincronizacion de datos del usuario y validaciond de campos del formulario
             $usuario->sincronizar($_POST);
             $alertas = $usuario->validarNuevoUsuario();
-
             if (empty($alertas)) {
                 // ? verificar usuario parfa evitar duplicados
                 $resultado = $usuario->existeUsuario();
@@ -112,5 +111,28 @@ class UsuarioController
         $router->render('usuarios/confirmar', [
             'alertas' => $alertas,
         ], false);
+    }
+
+    public static function search(Router $router)
+    {
+        $alertas = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $search = s($_POST['search']);
+            $usuario = new Usuario;
+            $alertas = $usuario->validarBusqueda($search);
+
+            if (empty($alertas)) {
+                $usuarioSearch = Usuario::consultarSQLFind(self::$campos, self::$tablas_join, self::$columnas, self::$column_search, $search);
+
+                if (!empty($usuarioSearch)) {
+                    $router->render('usuarios/usuario', ["usuarios" => $usuarioSearch, "alertas" => $alertas]);
+                } else {
+                    Usuario::setAlerta('error', 'No se encontro el usuario');
+                }
+            }
+
+            $alertas = Usuario::getAlertas();
+            static::index($router, $alertas);
+        }
     }
 }

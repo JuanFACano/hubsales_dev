@@ -134,4 +134,13 @@ class Usuario extends ActiveRecord
 
         return self::$alertas;
     }
+
+    public function validarBusqueda($search)
+    {
+        if (empty($search)) {
+            self::$alertas['error'][] = "Debe ingresar un nombre para buscar";
+        }
+
+        return self::$alertas;
+    }
 }

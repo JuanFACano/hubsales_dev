@@ -75,7 +75,6 @@ if ($rol === 1) {
         </div>
     </div>
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/c36f3a940c.js" crossorigin="anonymous"></script>
     <script src="/build/js/app.js"></script>
 </body>

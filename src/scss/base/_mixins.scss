@@ -77,3 +77,12 @@
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
 }
+
+@mixin alert($color) {
+    color: $color;
+    display: block;
+
+    &.dark {
+        color: darken($color: $color, $amount: 10%);
+    }
+}

@@ -1,4 +1,7 @@
 <div class="contenedor_app">
+  <?php
+  include_once __DIR__ . '/../templates/alertas.php';
+  ?>
   <header class="contenedor_header">
     <div class="contenedor_header_head">
       <h1 class="app_title">usuarios</h1>
@@ -6,14 +9,12 @@
         <a href="/usuarios/crear">Agregar Usuario</a>
       </div>
     </div>
-    <div class="contenedor_header_search campo campo_search">
-      <form action="">
-        <input type="text" id="search" name="search" placeholder="Buscar Usuario">
-      </form>
-      <button class="send">
-        <i class="fa-solid fa-magnifying-glass"></i>
+    <form method="POST" class="contenedor_header_search campo_simple" action="">
+      <input type="text" id="search" name="search" placeholder="Buscar usuario por nombre">
+      <button class="send unset">
+        <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
       </button>
-    </div>
+    </form>
   </header>
   <main class="contenedor_main">
     <table class="table">
@@ -24,18 +25,18 @@
         <th class="table_head_item">Action</th>
       </thead>
       <tbody class="table_body">
-        <?php foreach ($datos_base as $dato) : ?>
+        <?php foreach ($usuarios as $usuario) : ?>
           <tr class="table_row">
-            <td><?php echo $dato->user_nombre . " " . $dato->user_apellido ?></td>
-            <td><?php echo $dato->rol_nombre ?></td>
-            <td class="td_correo"><?php echo $dato->user_correo ?></td>
+            <td class="capitalize"><?php echo s($usuario->user_nombre) . " " . s($usuario->user_apellido) ?></td>
+            <td class="capitalize"><?php echo s($usuario->rol_nombre) ?></td>
+            <td><?php echo s($usuario->user_correo) ?></td>
             <td>
-              <a href="/usuarios/editar?id=<?php echo $dato->user_id ?>" class="table_actions edit">
-                <i class="fa-solid fa-pen-to-square"></i>
+              <a href="/usuarios/editar?id=<?php echo s($usuario->user_id) ?>" class="table_actions edit">
+                <img class="icon blue sm" src="/build/img/pen-to-square-solid.svg" alt="icon edit">
               </a>
-              <a data-id="<?php echo $dato->user_id ?>" class="table_actions delete">
-                <i class="fa-solid fa-trash"></i>
-              </a>
+              <button data-id="<?php echo s($usuario->user_id) ?>" data-name="" id="delete" class="table_actions delete">
+                <img class="icon red sm" src="/build/img/trash-solid.svg" alt="home icon">
+              </button>
             </td>
           </tr>
         <?php endforeach ?>

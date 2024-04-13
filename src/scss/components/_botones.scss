@@ -4,6 +4,10 @@
 .boton {
   @include m.boton(v.$principal, v.$azul-100);
 
+  &.pad1-4 {
+    @include m.boton(v.$principal, v.$azul-100, 1rem, 4rem);
+  }
+
   &.pad1-2 {
     @include m.boton(v.$principal, v.$azul-100, 1rem, 2rem);
   }
@@ -14,6 +18,14 @@
 
   &.width-70 {
     @include m.boton(v.$principal, v.$azul-100, 1rem, 1rem, 10%);
+  }
+
+  &.delete {
+    background-color: v.$red
+  }
+
+  &.success {
+    background-color: darken($color: v.$verde, $amount: 10%)
   }
 }
 

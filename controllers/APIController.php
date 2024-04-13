@@ -2,13 +2,19 @@
 
 namespace Controllers;
 
-use Model\Producto;
+use Model\Usuario;
 
 class APIController
 {
-  public static function index()
+  public static function eliminarUsuario()
   {
-    $productos = Producto::all();
-    echo json_encode($productos);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $id = $_POST['id'];
+
+      $usuario = Usuario::find($id, 'user_id');
+      $usuario->eliminar('user_id', $id);
+
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
   }
 }
