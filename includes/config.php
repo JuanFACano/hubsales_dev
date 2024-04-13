@@ -13,4 +13,4 @@
 define('SERVER', 'localhost');
 define('DBNAME', 'hubsales');
 define('USER', 'postgres');
-define('PASSWORD', '1234'); // 1234 // postgres
+define('PASSWORD', 'postgres');

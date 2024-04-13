@@ -32,7 +32,7 @@ class Router
         if ($fn) {
             call_user_func($fn, $this); // Call user fn va a llamar una función cuando no sabemos cual sera
         } else {
-            self::render('layout/notFound', [], false);
+            header("location: /");
         }
     }
 
