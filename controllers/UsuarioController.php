@@ -11,7 +11,7 @@ class UsuarioController
 {
     protected static $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_nombre', 'rol_id', 'user_correo'];
     protected static $column_id = 'user_id';
-    protected static $column_search = 'user_nombre';
+    protected static $column_search = 'user_correo';
     protected static $tablas_join = ['usuarios', 'roles'];
     protected static  $columnas = ['user_rol', 'rol_id'];
     public static function index(Router $router, $alertas = [])

@@ -10,7 +10,7 @@
       </div>
     </div>
     <form method="POST" class="contenedor_header_search campo_simple" action="">
-      <input type="text" id="search" name="search" placeholder="Buscar usuario por nombre">
+      <input type="text" id="search" name="search" placeholder="Buscar usuario por correo">
       <button class="send unset">
         <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
       </button>

@@ -235,12 +235,12 @@ class ActiveRecord
         $resultado = self::$db->prepare($query);
         $resultado->execute();
         $array = [];
-        if ($resultado->rowCount() > 0) {
-            $dato = $resultado->fetch(PDO::FETCH_ASSOC);
-            $array[] = static::crearobjetoBuilder($dato);
+        while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = static::crearobjetoBuilder($registro);
         }
         return $array;
     }
+
 
     // funcion para crear objeto de tipo especializado en JOIN_ALL
     public static function crearobjetoBuilder($registro)
