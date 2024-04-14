@@ -1,7 +1,7 @@
 <div class="contenedor_app">
   <?php
   include_once __DIR__ . '/../templates/alertas.php';
-  $view = getView($usuarios)
+  $view = getView($usuarios[0])
   ?>
   <header class="contenedor_header">
     <div class="contenedor_header_head">
@@ -12,7 +12,7 @@
     </div>
     <form method="POST" class="contenedor_header_search campo_simple" action="">
       <input type="text" id="search" name="search" placeholder="Buscar usuario por correo">
-      <button class="send unset">
+      <button class="send unset"> 
         <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
       </button>
     </form>

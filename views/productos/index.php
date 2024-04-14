@@ -1,5 +1,5 @@
 <?php
-$view = getView($productos);
+$view = getView($productos[0]);
 ?>
 
 <div class="contenedor_app">

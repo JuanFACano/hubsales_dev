@@ -31,11 +31,12 @@ class UsuarioController
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             //? Sincronizacion de datos del usuario y validaciond de campos del formulario
             $usuario->sincronizar($_POST);
+            $usuario->sanitizarDatos(self::$column_id);
+
             $alertas = $usuario->validarNuevoUsuario();
             if (empty($alertas)) {
                 // ? verificar usuario parfa evitar duplicados
                 $resultado = $usuario->existeUsuario();
-
                 if ($resultado->rowCount()) {
                     $alertas = Usuario::getAlertas();
                 } else {
@@ -65,21 +66,44 @@ class UsuarioController
     public static function editar(Router $router)
     {
         $id_get = $_GET['id'];
-        $usuario = new Usuario();
+        $usuario = new Usuario($_POST);
         $alertas = [];
+
+        $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_id', 'user_correo', 'user_contrasenia', 'confirmado', 'token'];
+        $usuarioEdit = Usuario::consultarSQLFind($campos, self::$tablas_join, self::$columnas, self::$column_id, $id_get)[0];
 
         if ($_SERVER['REQUEST_METHOD'] === "GET") {
             $alertas = $usuario->usuarioEncontrado($id_get);
-            $campos = ['user_id', 'user_nombre', 'user_apellido', 'rol_id', 'user_correo'];
-            $resultado = Usuario::consultarSQLFind($campos, self::$tablas_join, self::$columnas, self::$column_id, $id_get);
         } else {
+            $usuario->sincronizar($_POST);
             if (empty($alertas)) {
-                $usuario->sincronizar($_POST);
-                header('location: /usuarios');
+                $usuario->user_id = $usuarioEdit->user_id;
+                if ($usuarioEdit->confirmado) {
+                    $usuario->token = null;
+                    $usuario->confirmado = '1';
+                } else {
+                    $usuario->token = $usuarioEdit->token;
+                }
+
+                if ($usuario->user_contrasenia == '') {
+                    $usuario->user_contrasenia = $usuarioEdit->user_contrasenia;
+                } else {
+                    $usuario->hashPassword();
+                }
+
+                // Hash Password
+                $resultado = $usuario->actualizar(self::$column_id);
+
+                if ($resultado) {
+                    header('location: /usuarios');
+                } else {
+                    $alertas['error'][] = "No se pudo actualizar";
+                    $alertas = $usuario::getAlertas();
+                }
             }
         }
 
-        $router->render('usuarios/user_editar', ['resultado' => $resultado, 'alertas' => $alertas]);
+        $router->render('usuarios/user_editar', ['usuario' => $usuarioEdit, 'alertas' => $alertas]);
     }
 
     public static function mensaje(Router $router)
@@ -100,7 +124,7 @@ class UsuarioController
             // ? Modificar Usuario
             $usuario->confirmado = "1";
             $usuario->token = NULL;
-            $usuario->actualizar('user_id');
+            $usuario->actualizar(self::$column_id);
             Usuario::setAlerta('exito', "Cuenta comprobada correctamente");
         }
 
@@ -117,7 +141,8 @@ class UsuarioController
     {
         $alertas = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $search = s($_POST['search']);
+            $searchDB = s($_POST['search']);
+            $search = normalizeStr($searchDB);
             $usuario = new Usuario;
             $alertas = $usuario->validarBusqueda($search);
 

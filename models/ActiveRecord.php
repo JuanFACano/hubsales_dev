@@ -77,7 +77,6 @@ class ActiveRecord
     public function atributos()
     {
         $atributos = [];
-
         foreach (static::$columnasDB as $columna) {
 
             if ($columna === static::$columnasDB[0]) {
@@ -86,7 +85,6 @@ class ActiveRecord
 
             $atributos[$columna] = $this->$columna;
         }
-
         return $atributos;
     }
 
@@ -104,6 +102,30 @@ class ActiveRecord
             }
         }
         return $sanitizado;
+    }
+
+    // sanitizar datos
+    public function sanitizarDatos($exs = "")
+    {
+        $objeto = $this;
+
+        $atributos = $this->atributos();
+
+        $sanitizado = [];
+        foreach ($atributos as $key => $value) {
+            if (is_string($value) && strlen($value) < 60) {
+                $sanitizado[$key] = normalizeStr($value);
+            } else {
+                $sanitizado[$key] = $value;
+            }
+        }
+        // $objeto = static::crearobjetoBuilder($sanitizado, false);
+        foreach ($objeto as $key => $value) {
+            if ($key == $exs) {
+                unset($objeto->$key);
+            }
+        }
+        $this->sincronizar($sanitizado);
     }
 
     // Sincroniza BD con Objetos en memoria
@@ -185,7 +207,6 @@ class ActiveRecord
             $valores[] = "{$key}='{$value}'";
         }
 
-
         // Consulta SQL
         $query = "UPDATE " . static::$tabla . " SET ";
         $query .= join(', ', $valores);
@@ -235,6 +256,7 @@ class ActiveRecord
         } else {
             $query = QueryBuilder::find($campos, $tablas_join, $columnas, $column, $column_value);
         }
+
         // Consultar la base de datos
         $resultado = self::$db->prepare($query);
         $resultado->execute();
@@ -247,15 +269,18 @@ class ActiveRecord
 
 
     // funcion para crear objeto de tipo especializado en JOIN_ALL
-    public static function crearobjetoBuilder($registro)
+    public static function crearobjetoBuilder($registro, $limpio = true)
     {
         $objeto = new static;
         foreach ($registro as $key => $value) {
             $objeto->$key = $value;
         }
-        $objetoLimpio = self::limpiarObjeto($objeto);
 
-        return $objetoLimpio;
+        if ($limpio) {
+            $objeto = self::limpiarObjeto($objeto);
+        }
+
+        return $objeto;
     }
 
     public static function limpiarObjeto($objeto)

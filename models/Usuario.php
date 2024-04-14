@@ -128,6 +128,7 @@ class Usuario extends ActiveRecord
         $consulta = "SELECT * FROM " . self::$tabla . " WHERE user_id = '" . $id . "' LIMIT 1";
         $resultado = self::$db->prepare($consulta);
         $resultado->execute();
+
         if ($resultado->rowCount() == 0) {
             self::$alertas['error'][] = "No se pudo actualizar el usuario";
         }

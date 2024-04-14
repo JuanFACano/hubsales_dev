@@ -10,7 +10,7 @@ function debuguear($variable): string
 
 function getView($obj)
 {
-    $a = get_class($obj[0]);
+    $a = get_class($obj);
     $objArray = explode("\\", $a);
     $view = $objArray[1];
     return strtolower($view);
@@ -27,6 +27,8 @@ function normalizeStr($str)
 {
     $norm = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
     $norm = str_replace('~n', 'ñ', $norm);
-    $norm = preg_replace("/[^a-zA-Z0-9ñÑ]+/", "", $norm);
+    $norm = str_replace('~N', 'ñ', $norm);
+    $norm = preg_replace("/[^a-zA-Z0-9ñÑ@._-]+/", "", $norm);
     $norm = strtolower($norm);
+    return $norm;
 }
