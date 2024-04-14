@@ -29,6 +29,11 @@ function normalizeStr($str)
     $norm = str_replace('~n', 'ñ', $norm);
     $norm = str_replace('~N', 'ñ', $norm);
     $norm = preg_replace("/[^a-zA-Z0-9ñÑ@._-]+/", "", $norm);
-    $norm = strtolower($norm);
+
+    $texto = preg_replace_callback("/([@._-])\\1+/", function ($match) {
+        return $match[1];
+    }, $norm);
+
+    $norm = strtolower($texto);
     return $norm;
 }

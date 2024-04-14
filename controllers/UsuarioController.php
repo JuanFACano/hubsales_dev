@@ -14,6 +14,7 @@ class UsuarioController
     protected static $column_search = 'user_correo';
     protected static $tablas_join = ['usuarios', 'roles'];
     protected static  $columnas = ['user_rol', 'rol_id'];
+
     public static function index(Router $router, $alertas = [])
     {
         $usuariosJoin = Usuario::consultarSQLBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
@@ -90,7 +91,7 @@ class UsuarioController
                 } else {
                     $usuario->hashPassword();
                 }
-
+                $usuario->sanitizarDatos();
                 // Hash Password
                 $resultado = $usuario->actualizar(self::$column_id);
 
@@ -141,7 +142,7 @@ class UsuarioController
     {
         $alertas = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $searchDB = s($_POST['search']);
+            $searchDB = $_POST['search'];
             $search = normalizeStr($searchDB);
             $usuario = new Usuario;
             $alertas = $usuario->validarBusqueda($search);
