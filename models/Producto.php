@@ -24,4 +24,13 @@ class Producto extends ActiveRecord
     $this->prod_existencias = $args['prod_existencias'] ?? '';
     $this->prod_cat_id = $args['prod_cat_id'] ?? '';
   }
+
+  public function validarBusqueda($search)
+  {
+    if (empty($search)) {
+      self::$alertas['error'][] = "ingresar un nombre valido";
+    }
+
+    return self::$alertas;
+  }
 }

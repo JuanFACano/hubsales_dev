@@ -21,4 +21,13 @@ class QueryBuilder
     $query = "SELECT $camposString FROM $tableString ON $columnasString WHERE $column = '$column_value'";
     return $query;
   }
+
+  public static function findAll($campos, $tablas_join, $columnas, $column, $column_value)
+  {
+    $camposString = implode(', ', $campos);
+    $tableString = implode(' INNER JOIN ', $tablas_join);
+    $columnasString = implode(' = ', $columnas);
+    $query = "SELECT $camposString FROM $tableString ON $columnasString WHERE $column ILIKE '%$column_value%'";
+    return $query;
+  }
 }

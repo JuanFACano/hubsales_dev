@@ -17,7 +17,7 @@ class UsuarioController
     public static function index(Router $router, $alertas = [])
     {
         $usuariosJoin = Usuario::consultarSQLBuilderAll(self::$campos, self::$tablas_join, self::$columnas);
-        $router->render('usuarios/usuario', ["usuarios" => $usuariosJoin, "alertas" => $alertas]);
+        $router->render('usuarios/index', ["usuarios" => $usuariosJoin, "alertas" => $alertas]);
     }
 
     public static function crear(Router $router)
@@ -125,7 +125,7 @@ class UsuarioController
                 $usuarioSearch = Usuario::consultarSQLFind(self::$campos, self::$tablas_join, self::$columnas, self::$column_search, $search);
 
                 if (!empty($usuarioSearch)) {
-                    $router->render('usuarios/usuario', ["usuarios" => $usuarioSearch, "alertas" => $alertas]);
+                    $router->render('usuarios/index', ["usuarios" => $usuarioSearch, "alertas" => $alertas]);
                 } else {
                     Usuario::setAlerta('error', 'No se encontro el usuario');
                 }

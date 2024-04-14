@@ -37,7 +37,12 @@
   text-overflow: ellipsis;
   text-align: center;
   border: 1px solid v.$azul-500;
+
+  &.nell {
+    text-overflow: clip;
+  }
 }
+
 
 .table_row {
   background-color: v.$azul-100;

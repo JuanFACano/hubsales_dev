@@ -228,9 +228,13 @@ class ActiveRecord
         return $array;
     }
 
-    public static function consultarSQLFind($campos, $tablas_join, $columnas, $column, $column_value)
+    public static function consultarSQLFind($campos, $tablas_join, $columnas, $column, $column_value, $all = false)
     {
-        $query = QueryBuilder::find($campos, $tablas_join, $columnas, $column, $column_value);
+        if ($all) {
+            $query = QueryBuilder::findAll($campos, $tablas_join, $columnas, $column, $column_value);
+        } else {
+            $query = QueryBuilder::find($campos, $tablas_join, $columnas, $column, $column_value);
+        }
         // Consultar la base de datos
         $resultado = self::$db->prepare($query);
         $resultado->execute();

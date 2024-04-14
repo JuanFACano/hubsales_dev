@@ -1,3 +1,7 @@
+<?php
+$view = getView($productos);
+?>
+
 <div class="contenedor_app">
   <header class="contenedor_header">
     <div class="contenedor_header_head">
@@ -6,10 +10,12 @@
         <a href="/producto/crear">Agregar Producto</a>
       </div>
     </div>
-    <div class="contenedor_header_search campo campo_search">
-      <input type="text" id="search" name="search" placeholder="Buscar Producto">
-      <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="home icon">
-    </div>
+    <form method="POST" class="contenedor_header_search campo_simple">
+      <input type="text" id="search" name="search" placeholder="Buscar Producto por nombre">
+      <button class="send unset">
+        <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
+      </button>
+    </form>
   </header>
   <main class="contenedor_main">
     <table class="table">
@@ -22,18 +28,18 @@
         <th class="table_head_item">Action</th>
       </thead>
       <tbody class="table_body" id="table_body">
-        <?php foreach ($datos_base as $dato) : ?>
+        <?php foreach ($productos as $producto) : ?>
           <tr class="table_row">
-            <td><?php echo $dato->prod_nombre ?></td>
-            <td>$<?php echo $dato->prod_precio_unitario ?></td>
-            <td><?php echo $dato->prod_existencias ?></td>
-            <td><?php echo $dato->cat_nombre ?></td>
-            <td><?php echo $dato->prod_descripcion ?></td>
-            <td>
+            <td title="<?php echo $producto->prod_nombre; ?>"><?php echo $producto->prod_nombre ?></td>
+            <td title="<?php echo $producto->prod_precio_unitario; ?>">$<?php echo $producto->prod_precio_unitario ?></td>
+            <td title="<?php echo $producto->prod_existencias; ?>"><?php echo $producto->prod_existencias ?></td>
+            <td title="<?php echo $producto->cat_nombre; ?>"><?php echo $producto->cat_nombre ?></td>
+            <td title="<?php echo $producto->prod_descripcion; ?>"><?php echo $producto->prod_descripcion ?></td>
+            <td class="nell" title="">
               <a href="/productos/editar?id=<?php echo ''; ?>" class="table_actions edit">
                 <img class="icon blue sm" src="/build/img/pen-to-square-solid.svg" alt="home icon">
               </a>
-              <button id="delete" class="table_actions delete">
+              <button data-id="<?php echo s($producto->prod_id) ?>" data-view="<?php echo $view ?>" id="delete" class="table_actions delete">
                 <img class="icon red sm" src="/build/img/trash-solid.svg" alt="home icon">
               </button>
             </td>

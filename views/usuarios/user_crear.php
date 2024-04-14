@@ -28,7 +28,7 @@
     <div class="campo_simple">
       <label class="campo_label" for="contrasenia">Contraseña</label>
       <input type="password" name="contrasenia" id="contrasenia" placeholder="ingrese una contraseña">
-    </div>
-    <input class="boton" type="submit" value="Crear Usuario">
+    </div> <input class="boton" type="submit" value="Crear Usuario">
+    <a class="boton" href="/usuarios">Volver</a>
   </form>
 </div>

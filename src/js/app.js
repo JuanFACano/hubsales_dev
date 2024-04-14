@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function iniciarApp() {
-
   tabs();
   goBack();
 }
@@ -45,23 +44,41 @@ buttonDelete.forEach(button => {
 
 
 function alerta(button, method) {
+
+  const view = button.getAttribute("data-view")
+
   let inputHidden = document.createElement('INPUT');
   inputHidden.setAttribute("type", "hidden");
+  inputHidden.setAttribute("name", "id")
+
 
   let inputSend = document.createElement('INPUT');
   inputSend.setAttribute("class", "boton")
+  inputSend.setAttribute("type", "submit");
   inputSend.classList.add("pad1-4")
 
   let actionAlert = "";
 
-  if (method == 'delete') {
-    const [inputH, inputS, action] = eliminarUsuario(button);
-    inputHidden = inputH
-    inputSend = inputS
-    actionAlert = action
+  if (method === 'delete') {
+    inputSend.setAttribute("value", "Eliminar")
+    inputSend.classList.add("delete")
+
+
+    if (view === "usuario") {
+      console.log(view);
+      actionAlert = eliminarUsuario(button, inputHidden);
+    }
+
+    if (view == "producto") {
+      actionAlert = eliminarProducto(button, inputHidden);
+    }
   }
 
+  const popUp = createForm(inputHidden, inputSend, actionAlert);
+  document.querySelector('body').appendChild(popUp)
+}
 
+function createForm(inputHidden, inputSend, actionAlert) {
   const formImage = document.createElement('IMG');
   formImage.classList.add("form_image")
   formImage.setAttribute("src", "/build/img/message-solid.svg");
@@ -110,34 +127,30 @@ function alerta(button, method) {
   popupDiv.setAttribute("class", "section-popup");
   popupDiv.appendChild(form);
 
-  document.querySelector('body').appendChild(popupDiv)
-
-
   inputCancel.addEventListener('click', (event) => {
     event.preventDefault();
     nodo = popupDiv.parentNode.removeChild(popupDiv)
   })
 
+  return popupDiv;
 }
 
-function eliminarUsuario(button) {
+function eliminarUsuario(button, inputH) {
+
   const id = parseInt(button.getAttribute("data-id"));
-  const action = "/api/eliminar/usuario"
-  const inputHidden = document.createElement('INPUT');
-  inputHidden.setAttribute("type", "hidden");
-  inputHidden.setAttribute("name", "id")
-  inputHidden.setAttribute("value", id)
 
-  const inputSend = document.createElement('INPUT');
-  inputSend.setAttribute("type", "submit");
-  inputSend.setAttribute("class", "boton")
-  inputSend.classList.add("pad1-4")
-  inputSend.classList.add("delete")
-  inputSend.setAttribute("value", "Eliminar")
+  const action = "/api/eliminar/usuario";
+  inputH.setAttribute("value", id)
 
-  return [inputHidden, inputSend, action];
+  return action;
 }
 
-function eliminarProducto(button) {
+function eliminarProducto(button, inputH) {
+  const id = parseInt(button.getAttribute("data-id"));
 
+  const action = "/api/eliminar/producto"
+  console.log(action);
+  inputH.setAttribute("value", id)
+
+  return action;
 }
