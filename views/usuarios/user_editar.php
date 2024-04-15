@@ -1,6 +1,3 @@
-<?php
-?>
-
 <div class="form_contenedor">
   <?php
   include_once __DIR__ . '/../templates/alertas.php';

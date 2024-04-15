@@ -3,10 +3,12 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\APIController;
+use Controllers\CategoriaController;
 use Controllers\GeneralController;
 use Controllers\LoginController;
 use Controllers\ProductoController;
 use Controllers\UsuarioController;
+use Controllers\ClienteController;
 use MVC\Router;
 
 session_start();
@@ -30,11 +32,35 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
   $router->post('/productos', [ProductoController::class, 'search']);
 
   // ? Crear Producto
-  $router->post('/productos/crerar', [ProductoController::class, 'crear']);
+  $router->get('/productos/crear', [ProductoController::class, 'crear']);
 
 
   // ? Eliminar Producto
   $router->post('/api/eliminar/producto', [APIController::class, 'eliminarProducto']);
+
+  // ? -------------------------------------------------------------------------------------------
+  // ? Vista Clientes
+  $router->get('/clientes', [ClienteController::class, 'index']);
+
+  // ? crear Cliente
+  $router->get('/clientes/crear', [ClienteController::class, 'crear']);
+  $router->post('/clientes/crear', [ClienteController::class, 'crear']);
+
+  // ? Editar Cliente
+  $router->get('/clientes/editar', [ClienteController::class, 'editar']);
+  $router->post('/clientes/editar', [ClienteController::class, 'editar']);
+
+  // ? Eliminar Cliente
+  $router->post('/api/eliminar/cliente', [APIController::class, 'eliminarCliente']);
+
+  // ? -------------------------------------------------------------------------------------------
+  // ? Vista Categorias}
+  $router->get('/categorias', [CategoriaController::class, 'index']);
+
+  // ? Crear Categoria
+  $router->get('/categorias/crear', [CategoriaController::class, 'crear']);
+
+
 
   // ? Vistas para usuario administrador
   if ($_SESSION['user_rol'] === 1) {

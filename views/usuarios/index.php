@@ -12,25 +12,25 @@
     </div>
     <form method="POST" class="contenedor_header_search campo_simple" action="">
       <input type="text" id="search" name="search" placeholder="Buscar usuario por correo">
-      <button class="send unset"> 
+      <button class="send unset">
         <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
       </button>
     </form>
   </header>
   <main class="contenedor_main">
-    <table class="table">
-      <thead class="table_head">
-        <th class="table_head_item">Nombre</th>
-        <th class="table_head_item">Rol</th>
-        <th class="table_head_item">Correo</th>
-        <th class="table_head_item">Action</th>
+    <table class="Table">
+      <thead class="Table_head">
+        <th class="Table_head_item">Nombre</th>
+        <th class="Table_head_item">Rol</th>
+        <th class="Table_head_item">Correo</th>
+        <th class="Table_head_item">Acciones</th>
       </thead>
-      <tbody class="table_body">
+      <tbody class="Table_body">
         <?php foreach ($usuarios as $usuario) : ?>
-          <tr class="table_row">
-            <td class="capitalize"><?php echo s($usuario->user_nombre) . " " . s($usuario->user_apellido) ?></td>
+          <tr class="Table_row">
+            <td class="capitalize txtnw"><?php echo s($usuario->user_nombre) . " " . s($usuario->user_apellido) ?></td>
             <td class="capitalize"><?php echo s($usuario->rol_nombre) ?></td>
-            <td title="<?php echo s($usuario->user_correo); ?>"><?php echo s($usuario->user_correo) ?></td>
+            <td class="txtnw"><?php echo s($usuario->user_correo) ?></td>
             <td>
               <a href="/usuarios/editar?id=<?php echo s($usuario->user_id) ?>" class="table_actions edit">
                 <img class="icon blue sm" src="/build/img/pen-to-square-solid.svg" alt="icon edit">

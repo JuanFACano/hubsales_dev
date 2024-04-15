@@ -29,4 +29,15 @@ class APIController
       header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
   }
+
+  public static function eliminarCliente()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $id = $_POST['id'];
+
+      $cliente = Cliente::find($id, 'cli_id');
+      $cliente->eliminar('cli_id', $id);
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+  }
 }

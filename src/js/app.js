@@ -72,6 +72,10 @@ function alerta(button, method) {
     if (view == "producto") {
       actionAlert = eliminarProducto(button, inputHidden);
     }
+
+    if (view == "cliente") {
+      actionAlert = eliminarCliente(button, inputHidden);
+    }
   }
 
   const popUp = createForm(inputHidden, inputSend, actionAlert);
@@ -149,7 +153,15 @@ function eliminarProducto(button, inputH) {
   const id = parseInt(button.getAttribute("data-id"));
 
   const action = "/api/eliminar/producto"
-  console.log(action);
+  inputH.setAttribute("value", id)
+
+  return action;
+}
+
+function eliminarCliente(button, inputH) {
+  const id = parseInt(button.getAttribute("data-id"));
+
+  const action = "/api/eliminar/cliente"
   inputH.setAttribute("value", id)
 
   return action;

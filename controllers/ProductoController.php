@@ -25,11 +25,12 @@ class ProductoController
   public static function crear(Router $router)
   {
     $producto = new Producto($_POST);
-
     $alertas = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
+
+    $router->render('productos/prod_crear');
   }
 
   public static function search(Router $router)

@@ -24,9 +24,6 @@
   padding: 2rem;
 }
 
-.table_head_item {
-  padding: 1.5rem 0;
-}
 
 .table_head_item,
 .table_row td {
@@ -62,4 +59,51 @@
   &.delete {
     color: v.$red;
   }
+}
+
+
+
+/* ------------------------------------------- */
+
+.Table {
+  width: 100%;
+  border-collapse: separate;
+
+  .Table_head {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background-color: v.$principal;
+    color: v.$azul-100;
+    box-shadow: rgb(78, 102, 194) 0px 8px 29px;
+
+    .Table_head_item {
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid v.$azul-500;
+    }
+  }
+
+  .Table_body {
+    .Table_row td {
+      text-align: center;
+      padding: 1rem;
+      font-weight: v.$regular;
+      border: 1px solid v.$azul-500;
+
+      &.no_center {
+        text-align: left;
+      }
+
+      &.txtnw {
+        white-space: nowrap;
+      }
+
+      &.no_border {
+        border: none;
+      }
+    }
+  }
+
+
 }

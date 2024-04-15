@@ -32,8 +32,7 @@ class UsuarioController
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             //? Sincronizacion de datos del usuario y validaciond de campos del formulario
             $usuario->sincronizar($_POST);
-            $usuario->sanitizarDatos(self::$column_id);
-
+            debuguear($usuario);
             $alertas = $usuario->validarNuevoUsuario();
             if (empty($alertas)) {
                 // ? verificar usuario parfa evitar duplicados

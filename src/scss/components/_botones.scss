@@ -27,6 +27,10 @@
   &.success {
     background-color: darken($color: v.$verde, $amount: 10%)
   }
+
+  &.mt {
+    margin-top: 1rem;
+  }
 }
 
 .contenedor_boton {

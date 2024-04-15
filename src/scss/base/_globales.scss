@@ -10,7 +10,7 @@ html {
 
 
 ::placeholder {
-    color: v.$principal;
+    color: v.$opacity
 }
 
 *,
@@ -38,8 +38,7 @@ img {
 
 
 td {
-
-    padding: .5rem 2rem;
+    vertical-align: middle;
 }
 
 input {
@@ -141,4 +140,9 @@ select:focus {
     top: 25%;
     right: 2rem;
     cursor: pointer;
+}
+
+.prod_buttons {
+    display: flex;
+    gap: 1rem;
 }

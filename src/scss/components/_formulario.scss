@@ -1,12 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.dark-mode {
-  .form {
-    background-color: v.$azul-100;
-  }
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -27,6 +21,7 @@
 
   .campo_doble {
     display: flex;
+    width: 100%;
     gap: 2rem;
   }
 
@@ -57,7 +52,8 @@
   width: 100%;
 
   input,
-  select {
+  select,
+  textarea {
     font-size: 2rem;
     width: 100%;
     padding: 1rem 2rem;
@@ -68,6 +64,12 @@
     border-radius: 1.5rem;
   }
 }
+
+textarea {
+  resize: none;
+  max-height: 15rem;
+}
+
 
 .formulario_login {
   width: 80%;
@@ -109,6 +111,15 @@
 
   @include m.tablet {
     position: inherit;
+  }
+
+  &.mx70 {
+    max-width: 60%;
+    margin: 0 auto;
+
+    .form {
+      width: 100%;
+    }
   }
 }
 
@@ -184,4 +195,10 @@
     }
 
   }
+}
+
+.botones_form {
+  display: flex;
+  gap: .5rem;
+
 }

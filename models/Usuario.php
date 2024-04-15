@@ -44,14 +44,26 @@ class Usuario extends ActiveRecord
 
         if (!$this->user_nombre) {
             self::$alertas['error'][] = "El nombre es obligatorio";
+        } else {
+            if (!preg_match('/^[A-Za-z\s]+$/', $this->cli_nombre)) {
+                self::$alertas['error'][] = "El nombre debe contener solo texto";
+            }
         }
 
         if (!$this->user_apellido) {
             self::$alertas['error'][] = "El apellido es obligatorio";
+        } else {
+            if (!preg_match('/^[A-Za-z\s]+$/', $this->cli_apellido)) {
+                self::$alertas['error'][] = "El apellido debe contener solo texto";
+            }
         }
 
         if (!$this->user_correo) {
             self::$alertas['error'][] = "El correo es obligatorio";
+        } else {
+            if (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $this->cli_correo)) {
+                self::$alertas['error'][] = "Ingrese un correo valido";
+            }
         }
 
         if (!$this->user_contrasenia) {
