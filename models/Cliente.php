@@ -81,7 +81,7 @@ class Cliente extends ActiveRecord
     if (!$this->cli_direccion) {
       self::$alertas['error'][] = "La direccion es obligatorio";
     } else {
-      if (!preg_match('/^[a-zA-Z]{2}\s\d+\s#\d+-\d+,\s[a-zA-Z]+$/', $this->cli_direccion)) {
+      if (!preg_match('/^[a-zA-Z0-9#\-\s]+$/', $this->cli_direccion)) {
         self::$alertas['error'][] = "Ingrese una direccion valido";
       }
     }

@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Categoria;
 use Model\Usuario;
 use Model\Producto;
 
@@ -37,6 +38,17 @@ class APIController
 
       $cliente = Cliente::find($id, 'cli_id');
       $cliente->eliminar('cli_id', $id);
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+  }
+
+  public static function eliminarCategoria()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $id = $_POST['id'];
+
+      $categoria = Categoria::find($id, 'cat_id');
+      $categoria->eliminar('cat_id', $id);
       header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
   }

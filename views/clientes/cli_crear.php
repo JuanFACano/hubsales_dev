@@ -31,7 +31,10 @@
       <label class="campo_label" for="cli_direccion">direccion</label>
       <input type="text" name="cli_direccion" id="cli_direccion" placeholder="cr 1 #02-03 - cl 4 #05-06" value="<?php echo s($cliente->cli_direccion) ?>">
     </div>
-    <input class="boton" type="submit" value="Crear Cliente">
-    <a class="boton" href="/clientes">Volver</a>
+
+    <div class="botones_form">
+      <a class="boton" href="/clientes">Volver</a>
+      <input class="boton" type="submit" value="Crear Cliente">
+    </div>
   </form>
 </div>

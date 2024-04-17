@@ -66,6 +66,7 @@
 }
 
 textarea {
+  padding: 1rem 2rem;
   resize: none;
   max-height: 15rem;
 }
@@ -85,7 +86,6 @@ textarea {
   box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.4);
   border-radius: 1.5rem;
   padding: 1.5rem 2rem;
-  background: v.$azul_100;
 
   i {
     color: v.$principal;
@@ -93,7 +93,6 @@ textarea {
 
   input {
     border: none;
-    background-color: v.$azul-100;
 
     &:focus {
       outline: none;
@@ -201,4 +200,30 @@ textarea {
   display: flex;
   gap: .5rem;
 
+  a,
+  input {
+    width: 100%;
+  }
+}
+
+.campo_simple {
+  position: relative;
+}
+
+.campo_icon {
+  position: absolute;
+  bottom: calc(15%);
+  left: calc(5%);
+  color: v.$principal;
+}
+
+input {
+  &.precio_input {
+    padding-left: 3rem;
+  }
+}
+
+.precio_input::-webkit-inner-spin-button,
+.precio_input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }

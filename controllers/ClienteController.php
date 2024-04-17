@@ -51,6 +51,7 @@ class ClienteController
     $alertas = [];
 
     $clienteEdit = Cliente::find($id_get, self::$column_id);
+    
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
       $cliente->sincronizar($_POST);
       $alertas = $cliente->validarCliente();

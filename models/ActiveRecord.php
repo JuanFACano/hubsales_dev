@@ -178,9 +178,9 @@ class ActiveRecord
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
         // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$tabla . " ( ";
+        $query = "INSERT INTO " . static::$tabla . " ( ";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' ";
+        $query .= " ) VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= "')";
         // Resultado de la consulta
@@ -260,6 +260,7 @@ class ActiveRecord
         // Consultar la base de datos
         $resultado = self::$db->prepare($query);
         $resultado->execute();
+
         $array = [];
         while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
             $array[] = static::crearobjetoBuilder($registro);

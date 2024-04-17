@@ -16,6 +16,7 @@ class Usuario extends ActiveRecord
         'confirmado',
         'token',
     ];
+    protected static $campo_validate = "user_correo";
 
     public $user_id;
     public $user_nombre;
@@ -39,43 +40,43 @@ class Usuario extends ActiveRecord
     }
 
     // ? Mensaje de Validacion para creacion de usuario
-    public function validarNuevoUsuario()
+    public function validarUsuario()
     {
 
         if (!$this->user_nombre) {
             self::$alertas['error'][] = "El nombre es obligatorio";
         } else {
-            if (!preg_match('/^[A-Za-z\s]+$/', $this->cli_nombre)) {
-                self::$alertas['error'][] = "El nombre debe contener solo texto";
+            if (!preg_match('/^[A-Za-zñÑ\p{L}\s]+$/', $this->user_nombre)) {
+                self::$alertas['error'][] = "El nombre no debe contener caracteres especiales ni numeros";
             }
         }
 
         if (!$this->user_apellido) {
             self::$alertas['error'][] = "El apellido es obligatorio";
         } else {
-            if (!preg_match('/^[A-Za-z\s]+$/', $this->cli_apellido)) {
-                self::$alertas['error'][] = "El apellido debe contener solo texto";
+            if (!preg_match('/^[A-Za-zñÑ\p{L}\s]+$/', $this->user_apellido)) {
+                self::$alertas['error'][] = "El apellido no debe contener caracteres especiales ni numeros";
             }
         }
 
         if (!$this->user_correo) {
             self::$alertas['error'][] = "El correo es obligatorio";
         } else {
-            if (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $this->cli_correo)) {
+            if (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $this->user_correo)) {
                 self::$alertas['error'][] = "Ingrese un correo valido";
             }
         }
 
         if (!$this->user_contrasenia) {
             self::$alertas['error'][] = "La contraseña es obligatoria";
-        } else
-
-        if (strlen($this->user_contrasenia) < 6) {
+        } else if (!preg_match('/^.{5,}$/', $this->user_contrasenia)) {
             self::$alertas['error'][] = "Contraseña debe tener al menos 6 caracteres";
         }
 
         if (!$this->user_rol) {
             self::$alertas['error'][] = "Seleccione un rol";
+        } elseif (!preg_match('/^[0-9]+$/', $this->user_rol)) {
+            self::$alertas['error'][] = "Escoga un rol";
         }
 
         return self::$alertas;
@@ -103,7 +104,7 @@ class Usuario extends ActiveRecord
     // ? Revision de usuario existente
     public function existeUsuario()
     {
-        $consulta = "SELECT * FROM " . self::$tabla . " WHERE user_correo = '" . $this->user_correo . "' LIMIT 1";
+        $consulta = "SELECT * FROM " . self::$tabla . " WHERE " . self::$campo_validate . " = '" . $this->user_correo . "' LIMIT 1";
         $resultado = self::$db->prepare($consulta);
         $resultado->execute();
 

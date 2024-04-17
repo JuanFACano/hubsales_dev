@@ -2,18 +2,18 @@
   <div class="gen_cards">
     <div class="hover gen_card_item">
       <img class="gen_card_item_image" src="/build/img/gen_client.webp" alt="client image">
-      <p class="gen_card_item_amount">20,2K</p>
-      <p class="gen_card_item_desc">Clientes</p>
+      <p class="gen_card_item_desc">Clientes <span style="display: block; text-align: center;">Felices</span></p>
+      <p class="gen_card_item_amount">5</p>
     </div>
     <div class="hover gen_card_item">
       <img class="gen_card_item_image" src="/build/img/gen_product.webp" alt="product image">
-      <p class="gen_card_item_amount">131,1K</p>
-      <p class="gen_card_item_desc">Productos</p>
+      <p class="gen_card_item_desc">Productos <span style="display: block; text-align: center;">vendidos</span></p>
+      <p class="gen_card_item_amount">14</p>
     </div>
     <div class="hover gen_card_item">
       <img class="gen_card_item_image" src="/build/img/gen_efect.webp" alt="efect image">
-      <p class="gen_card_item_amount">95%</p>
-      <p class="gen_card_item_desc">Efectividad</p>
+      <p class="gen_card_item_desc">Efectividad en <span style="display: block; text-align: center;">ventas</span></p>
+      <p class="gen_card_item_amount">75%</p>
     </div>
   </div>
   <div class="gen_statistics">

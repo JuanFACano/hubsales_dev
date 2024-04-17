@@ -21,15 +21,17 @@
       <label class="campo_label" for="user_rol">Rol</label>
       <select name="user_rol" id="user_rol">
         <option value="">Seleccione un Rol</option>
-        <option <?php echo $usuario->rol_id === 1 ? 'selected' : '' ?> value="1">Admin</option>
-        <option <?php echo $usuario->rol_id === 2 ? 'selected' : '' ?> value="2">Usuario Base</option>
+        <option <?php echo $usuario->user_rol === 1 ? 'selected' : '' ?> value="1">Admin</option>
+        <option <?php echo $usuario->user_rol === 2 ? 'selected' : '' ?> value="2">Usuario Base</option>
       </select>
     </div>
     <div class="campo_simple">
       <label class="campo_label" for="user_contrasenia">Contraseña</label>
       <input type="password" name="user_contrasenia" id="user_contrasenia" placeholder="ingrese una contraseña">
     </div>
-    <input class="boton" type="submit" value="Actualizar Usuario">
-    <a class="boton" href="/usuarios">Volver</a>
+    <div class="botones_form">
+      <a class="boton" href="/usuarios">Volver</a>
+      <input class="boton" type="submit" value="Actualizar Usuario">
+    </div>
   </form>
 </div>

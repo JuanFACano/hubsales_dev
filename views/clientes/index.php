@@ -1,5 +1,4 @@
 <?php
-$view = getView($clientes[0]);
 ?>
 
 <div class="contenedor_app">

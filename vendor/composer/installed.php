@@ -3,7 +3,7 @@
         'name' => 'juanc/hubsales',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd2bb66fd7940396a417d3ded7e84204359aa2897',
+        'reference' => '059e1f62e247da16d30247be3e2e6b1ece62f378',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'juanc/hubsales' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd2bb66fd7940396a417d3ded7e84204359aa2897',
+            'reference' => '059e1f62e247da16d30247be3e2e6b1ece62f378',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
