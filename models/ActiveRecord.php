@@ -183,6 +183,7 @@ class ActiveRecord
         $query .= " ) VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= "')";
+
         // Resultado de la consulta
         $resultado = self::$db->prepare($query);
         $resultado->execute();
@@ -256,7 +257,6 @@ class ActiveRecord
         } else {
             $query = QueryBuilder::find($campos, $tablas_join, $columnas, $column, $column_value);
         }
-
         // Consultar la base de datos
         $resultado = self::$db->prepare($query);
         $resultado->execute();

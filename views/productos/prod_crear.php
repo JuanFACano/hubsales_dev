@@ -1,7 +1,6 @@
 <div class="form_contenedor">
   <?php
   include_once __DIR__ . '/../templates/alertas.php';
-
   ?>
 
   <!-- ---------------------------------------- -->
@@ -19,11 +18,12 @@
       <input type="text" placeholder="Estructura: 15042024CE54321" name="prod_sku" id="prod_sku" value="<?php echo s($producto->prod_sku) ?>">
     </div>
     <div class="campo_simple">
-      <label class="campo_label" for="rol">Categoria</label>
-      <select name="prod_cat_id" id="rol">
+      <label class="campo_label" for="prod_cat_id">Categoria</label>
+      <select name="prod_cat_id" id="prod_cat_id">
         <option value="">Seleccione la categoria</option>
-        <option <?php echo s($producto->prod_cat_id == 1 ? "selected" : '') ?> value="1">Cafe</option>
-        <option <?php echo s($producto->prod_cat_id == 2 ? "selected" : '') ?> value="2">Moffins</option>
+        <?php foreach ($categorias as $categoria) : ?>
+          <option class="capitalize" <?php echo s($producto->prod_cat_id == $categoria->cat_id ? "selected" : '') ?> value="<?php echo s($categoria->cat_id) ?>"><?php echo s($categoria->cat_nombre) ?></option>
+        <?php endforeach ?>
       </select>
     </div>
     <div class="campo_doble">

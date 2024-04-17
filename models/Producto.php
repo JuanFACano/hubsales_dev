@@ -29,7 +29,7 @@ class Producto extends ActiveRecord
     $this->prod_sku = $args['prod_sku'] ?? '';
   }
 
-  public function validarNuevoProducto()
+  public function validarProducto()
   {
     if (!$this->prod_nombre) {
       self::$alertas['error'][] = "El nombre es obligatorio";
