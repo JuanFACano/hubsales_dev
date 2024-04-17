@@ -33,10 +33,16 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
 
   // ? Crear Producto
   $router->get('/productos/crear', [ProductoController::class, 'crear']);
+  $router->post('/productos/crear', [ProductoController::class, 'crear']);
+
+  // ?? Editar Producto
+  $router->get('/productos/editar', [ProductoController::class, 'editar']);
+  $router->post('/productos/editar', [ProductoController::class, 'editar']);
 
 
   // ? Eliminar Producto
   $router->post('/api/eliminar/producto', [APIController::class, 'eliminarProducto']);
+
 
   // ? -------------------------------------------------------------------------------------------
   // ? Vista Clientes
@@ -53,12 +59,22 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
   // ? Eliminar Cliente
   $router->post('/api/eliminar/cliente', [APIController::class, 'eliminarCliente']);
 
+
   // ? -------------------------------------------------------------------------------------------
   // ? Vista Categorias}
   $router->get('/categorias', [CategoriaController::class, 'index']);
 
   // ? Crear Categoria
   $router->get('/categorias/crear', [CategoriaController::class, 'crear']);
+  $router->post('/categorias/crear', [CategoriaController::class, 'crear']);
+
+  // ? Editar Categoria
+  $router->get('/categorias/editar', [CategoriaController::class, 'editar']);
+  $router->post('/categorias/editar', [CategoriaController::class, 'editar']);
+
+
+  // ? Eliminar Categoria
+  $router->post('/api/eliminar/categoria', [APIController::class, 'eliminarCategoria']);
 
 
 
