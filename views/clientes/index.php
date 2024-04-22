@@ -1,7 +1,8 @@
-<?php
-?>
-
 <div class="contenedor_app">
+  <?php
+  include_once __DIR__ . '/../templates/alertas.php';
+  $view = getView($clientes[0])
+  ?>
   <header class="contenedor_header">
     <div class="contenedor_header_head">
       <h1 class="app_title">Clientes</h1>
@@ -9,7 +10,7 @@
         <a href="/clientes/crear">Agregar Cliente</a>
       </div>
     </div>
-    <form method="POST" class="contenedor_header_search campo_simple">
+    <form method="POST" class="contenedor_header_search campo_simple" action="">
       <input type="text" id="search" name="search" placeholder="Buscar Cliente por cedula">
       <button class="send unset">
         <img class="icon blue sm" src="/build/img/magnifying-glass-solid.svg" alt="icon edit">
@@ -28,7 +29,7 @@
       <tbody class="table_body" id="table_body">
         <?php foreach ($clientes as $cliente) : ?>
           <tr class="table_row">
-            <td><?php echo $cliente->cli_nombre ?></td>
+            <td class="capitalize"><?php echo $cliente->cli_nombre ?></td>
             <td><?php echo $cliente->cli_cedula ?></td>
             <td><?php echo $cliente->cli_direccion ?></td>
             <td><?php echo $cliente->cli_correo ?></td>

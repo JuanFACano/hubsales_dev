@@ -62,7 +62,12 @@
     box-shadow: 1px 4px 20px rgba(52, 63, 116, 0.3);
     color: v.$principal;
     border-radius: 1.5rem;
+
+    &.no_border {
+      border-radius: 0;
+    }
   }
+
 }
 
 textarea {
@@ -226,4 +231,52 @@ input {
 .precio_input::-webkit-inner-spin-button,
 .precio_input::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+
+.fac_crear {
+  display: flex;
+
+  .detalle,
+  .form {
+    width: 100%;
+  }
+
+  .form {
+    flex: 2;
+
+    .buscar {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+    }
+  }
+
+  .detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem 2rem;
+    padding: 4rem;
+    border-radius: 2rem;
+    border: 1px solid v.$principal;
+    flex: 1;
+  }
+
+  .lista {
+    display: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+
+    .lista_item {
+      padding: 1rem;
+      border-bottom: 1px solid #000;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

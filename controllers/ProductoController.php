@@ -94,7 +94,6 @@ class ProductoController
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $searchDB = $_POST['search'];
       $search = normalizeStr($searchDB);
-
       $producto = new Producto;
       $alertas = $producto->validarBusqueda($search);
 

@@ -151,7 +151,7 @@ class ActiveRecord
     // Busca un registro por su id
     public static function find($campo_value, $campo)
     {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE {$campo} = {$campo_value}";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE {$campo} = '{$campo_value}'";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
@@ -268,6 +268,50 @@ class ActiveRecord
         return $array;
     }
 
+    public static function consultarSQLBuilderAllMore($campos, $tablas_join, $columnas, $columns_id)
+    {
+        $query = QueryBuilder::joinAllMore($campos, $tablas_join, $columnas, $columns_id);
+        $resultado = self::$db->prepare($query);
+        $resultado->execute();
+        // Iterar los resultados
+        $array = [];
+        while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = static::crearobjetoBuilder($registro);
+        }
+
+        // liberar la memoria
+        $resultado->closeCursor();
+
+        // retornar los resultados
+        return $array;
+    }
+
+    public static function findSearch($tabla, $campo_value, $campo)
+    {
+        $query = QueryBuilder::findSearch($tabla, $campo_value, $campo);
+        $resultado = self::$db->prepare($query);
+        $resultado->execute();
+
+        $array = [];
+        while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = static::crearobjetoBuilder($registro);
+        }
+        return $array;
+    }
+
+    public static function probarSearch($buscar)
+    {
+        $query = QueryBuilder::search($buscar);
+
+        $resultado = self::$db->prepare($query);
+        $resultado->execute();
+
+        $array = [];
+        while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+            $array[] = static::crearobjetoBuilder($registro);
+        }
+        return $array;
+    }
 
     // funcion para crear objeto de tipo especializado en JOIN_ALL
     public static function crearobjetoBuilder($registro, $limpio = true)

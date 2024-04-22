@@ -7,7 +7,7 @@ class Conexion
     public static function conectar()
     {
         try {
-            $dsn = "pgsql:host=" . SERVER . "; port=5432; dbname=" . DBNAME;
+            $dsn = "pgsql:host=" . SERVER . "; port=5432; dbname=" . DBNAME . ";options='--client_encoding=UTF8'";
             $conexion = new PDO($dsn, USER, PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
             return $conexion;
         } catch (Exception $error) {

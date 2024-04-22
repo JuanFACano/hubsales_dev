@@ -40,7 +40,7 @@ class Cliente extends ActiveRecord
     if (!$this->cli_nombre) {
       self::$alertas['error'][] = "El nombre es obligatorio";
     } else {
-      if (!preg_match('/^[A-Za-z\s]+$/', $this->cli_nombre)) {
+      if (!preg_match('/^[A-Za-zñÑ\s]+$/', $this->cli_nombre)) {
         self::$alertas['error'][] = "El nombre debe contener solo texto";
       }
     }
@@ -95,7 +95,6 @@ class Cliente extends ActiveRecord
 
     $resultado = self::$db->prepare($consulta);
     $resultado->execute();
-
     if ($resultado->rowCount() > 0) {
       self::$alertas['error'][] = "El cliente ya esta registrado";
     }
@@ -110,6 +109,15 @@ class Cliente extends ActiveRecord
 
     if ($resultado->rowCount() == 0) {
       self::$alertas['error'][] = "No se pudo actualizar el cliente";
+    }
+
+    return self::$alertas;
+  }
+
+  public function validarBusqueda($search)
+  {
+    if (empty($search)) {
+      self::$alertas['error'][] = "ingresar un correo valido";
     }
 
     return self::$alertas;

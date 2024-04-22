@@ -9,6 +9,7 @@ use Controllers\LoginController;
 use Controllers\ProductoController;
 use Controllers\UsuarioController;
 use Controllers\ClienteController;
+use Controllers\FacturaController;
 use MVC\Router;
 
 session_start();
@@ -47,6 +48,7 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
   // ? -------------------------------------------------------------------------------------------
   // ? Vista Clientes
   $router->get('/clientes', [ClienteController::class, 'index']);
+  $router->post('/clientes', [ClienteController::class, 'search']);
 
   // ? crear Cliente
   $router->get('/clientes/crear', [ClienteController::class, 'crear']);
@@ -75,6 +77,22 @@ if (array_key_exists('user_login', $_SESSION) && $_SESSION['user_login']) {
 
   // ? Eliminar Categoria
   $router->post('/api/eliminar/categoria', [APIController::class, 'eliminarCategoria']);
+
+
+  // ? -------------------------------------------------------------------------------------------
+  // ? Vista Facturas
+  $router->get('/facturas', [FacturaController::class, 'index']);
+  $router->post('/facturas', [FacturaController::class, 'index']);
+
+  $router->get('/facturas/crear', [FacturaController::class, 'crear']);
+
+  // api buscar ingresar a tabla
+  $router->get('/api/productos', [APIController::class, 'buscar']);
+  $router->post('/api/productos', [APIController::class, 'buscar']);
+
+  // api buscar autocompletar
+  $router->get('/api/productos/buscar', [APIController::class, 'autoComplete']);
+  $router->post('/api/productos/buscar', [APIController::class, 'autoComplete']);
 
 
 

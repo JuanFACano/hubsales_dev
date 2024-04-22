@@ -21,27 +21,21 @@
     gap: 2rem;
     padding: 2rem;
 
-
-    .contenedor_header_head {
-
-      .app_title {
-        text-align: left;
-        color: v.$principal;
-        margin: 0;
-      }
-
-      .app_boton {
-        font-size: 1.5rem;
-      }
-    }
-
     .contenedor_header_search {
       position: relative;
-
 
       input::placeholder {
         font-size: 1.8rem;
       }
+    }
+  }
+
+  .search {
+    position: relative;
+
+
+    input::placeholder {
+      font-size: 1.8rem;
     }
   }
 
@@ -50,9 +44,6 @@
     padding: 0 2rem;
     width: 100%;
   }
-
-  // App Body
-
 
   // App Responsive
   @include m.tablet {
@@ -80,5 +71,11 @@
 }
 
 .app_title {
-  color: red;
+  text-align: left;
+  color: v.$principal;
+  margin: 0;
+}
+
+.app_boton {
+  font-size: 1.5rem;
 }

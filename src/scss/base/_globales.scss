@@ -125,6 +125,10 @@ select:focus {
     filter: invert(39%) sepia(10%) saturate(6109%) hue-rotate(202deg) brightness(90%) contrast(80%);
 }
 
+.green {
+    filter: invert(53%) sepia(89%) saturate(2373%) hue-rotate(69deg) brightness(102%) contrast(101%);
+}
+
 .white {
     filter: invert(86%) sepia(25%) saturate(44%) hue-rotate(179deg) brightness(101%) contrast(108%);
 }
@@ -142,9 +146,21 @@ select:focus {
     top: 25%;
     right: 2rem;
     cursor: pointer;
+
+    &.fact {
+        top: calc(50%);
+    }
 }
 
 .prod_buttons {
     display: flex;
     gap: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.izq-der {
+    flex-direction: row;
 }
